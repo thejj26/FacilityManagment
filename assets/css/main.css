@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 0 120px;
+}
+
+.maxw {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+button {
+    border: none;
+}
+
+.btn-form {
+    background-color: #2B4D6B;
+    border-radius: 18px;
+    width: 194px;
+    height: 48px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 20px;
+    transition: .2s ease-out;
+}
+
+.btn-form:hover{
+    background-color: #123350;
+}
+
+/*overriding bootstrap css*/
+
+input{
+    border: none !important;
+    box-shadow: none !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus{
+    outline: none !important;
+    box-shadow: none !important;
+    border: none;
+}
+
+.form-floating label {
+    transition: transform 0.1s ease;
+}
+
+/*responsive*/
+
+@media only screen and (max-width:992px) {
+    .container {
+        padding: 0 80px;
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .container {
+        padding: 0 24px;
+    }
+}
