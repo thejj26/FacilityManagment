@@ -12,7 +12,9 @@ const credentialsAlert = document.querySelector('#alert')
 btnLogin.addEventListener("click", async () => {    //checks for an existing user on click
     let userData = null //stores user data
     const queryResult = await getDocs(generateQuery())  //stores the query results, is forwarded the generated query from the function
-    userData=queryResult[0] //stores the query results (user data), !!!THERE SHOUlD ONLY BE ONE USER!!!
+    queryResult.forEach(doc => { //stores the query results (user data), !!!THERE SHOUlD ONLY BE ONE USER!!! for some reason accesing the first element directly does not work
+        userData = doc.data()
+    }) 
     if (userData == null) { //no user is found
         credentialsAlert.style.display = "block"    //alerts shows
     } else (    //user is found
