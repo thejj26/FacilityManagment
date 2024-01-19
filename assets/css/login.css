@@ -2,6 +2,10 @@ body {
     background-color: #155998;
 }
 
+.maxw{
+    position: relative;
+}
+
 section,
 .row {
     height: 100vh;
@@ -47,4 +51,8 @@ section,
     transform: translateY(-100%);
     width: 100%;
     display: none;
+}
+
+.form-floating{
+    width: 100%;
 }
