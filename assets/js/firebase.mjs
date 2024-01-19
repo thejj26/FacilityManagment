@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js';
-import {getFirestore} from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js';
+import { getFirestore, collection } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js';
 
 
 //app data for valiadating
@@ -13,6 +13,9 @@ const firebaseConfig = {
 }
 //initialization
 const app = initializeApp(firebaseConfig)
-const db=getFirestore(app)
+const db = getFirestore(app)
+
+const usersCollection = collection(db, "users")
+
 //exporting to other js files
 export default db
