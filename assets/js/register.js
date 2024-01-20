@@ -7,7 +7,9 @@ const inputEmail = document.querySelector("#emailInput")
 const inputPassword = document.querySelector("#passwordInput")
 const inputPasswordConfirm = document.querySelector('#passwordConfrimInput')
 const btnRegister = document.querySelector("#btnRegister")
+const registerAlert = document.querySelector("#alert")
 
+//TODO register on enter key press
 btnRegister.addEventListener("click", attemptRegister)
 
 function valiadateRegister() {   //valiadates user data
@@ -34,7 +36,7 @@ function valiadateRegister() {   //valiadates user data
             break
     }
 }
-
+//TODO handle invalid data
 async function attemptRegister() {  //attempts to register the user
     const valiadationStatus = await valiadateRegister()
     switch (valiadationStatus) {
@@ -53,15 +55,25 @@ async function attemptRegister() {  //attempts to register the user
             })
             break
         case 1: //invalid email
+            registerAlert.style.display="block"
+            registerAlert.innerHTML="Invalid email address."
             break
         case 2: //passwornds dont match
+        registerAlert.style.display="block"
+        registerAlert.innerHTML="Passwords do not match."
             break
-        case 3: //password too shot
+        case 3: //password too short
+        registerAlert.style.display="block"
+        registerAlert.innerHTML="Password must contain at least 6 characters."
             break
         case 4: //email is already used
+        registerAlert.style.display="block"
+        registerAlert.innerHTML="An account with this email already exists."
             break
         default:
             console.log("Error valiadating registartion info")    //error
+            registerAlert.style.display="block"
+            registerAlert.innerHTML="Error registering account. Try again."
             break
     }
 }
