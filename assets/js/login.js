@@ -22,10 +22,16 @@ async function attemptLogin() {
 
     })
     if (userData == null) { //no user is found
+        credentialsAlert.innerHTML = "Incorrect credentials. Try again."
         credentialsAlert.style.display = "block"    //alert shows
     } else {   //user is found
-        localStorage.setItem("userData", JSON.stringify(userData))
-        window.location = "../../index.html"
+        if (userData.verified) {
+            localStorage.setItem("userID", JSON.stringify(userData.id))
+            window.location = "../../index.html"
+        } else {  //user is not verified
+            credentialsAlert.innerHTML = "Please verify your email."
+            credentialsAlert.style.display = "block"    //alert shows
+        }
     }
 }
 function generateQuery() {  //generates a query to find all matching users

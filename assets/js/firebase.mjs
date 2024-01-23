@@ -15,7 +15,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
-const usersCollection = collection(db, "users")
-
 //exporting to other js files
 export default db
