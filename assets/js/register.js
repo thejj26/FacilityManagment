@@ -44,8 +44,7 @@ async function attemptRegister() {  //attempts to register the user
             const registationData = { //user data
                 email: inputEmail.value,
                 password: inputPassword.value,
-                username: inputEmail.value.split("@")[0],    //default username is the email without the domain name
-                verified: false
+                username: inputEmail.value.split("@")[0]    //default username is the email without the domain name
             }
             const newUserDoc = doc(usersCollection) //new doc to register the user
             setDoc(newUserDoc, registationData).then(() => {    //attempts to write new data to db

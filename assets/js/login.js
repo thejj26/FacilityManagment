@@ -21,17 +21,10 @@ async function attemptLogin() {
         userData.id = doc.id  //adds id for easier future usage
 
     })
-    if (userData == null) { //no user is found
-        credentialsAlert.innerHTML = "Incorrect credentials. Try again."
-        credentialsAlert.style.display = "block"    //alert shows
-    } else {   //user is found
-        if (userData.verified) {
-            localStorage.setItem("userID", JSON.stringify(userData.id))
-            window.location = "../../index.html"
-        } else {  //user is not verified
-            credentialsAlert.innerHTML = "Please verify your email."
-            credentialsAlert.style.display = "block"    //alert shows
-        }
+    if (userData == null) credentialsAlert.style.display = "block"    //no user is found, alert shows
+    else {   //user is found
+        localStorage.setItem("userID", JSON.stringify(userData.id))
+        window.location = "../../index.html"
     }
 }
 function generateQuery() {  //generates a query to find all matching users
