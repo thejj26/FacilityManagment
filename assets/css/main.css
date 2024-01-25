@@ -17,21 +17,24 @@ button {
 }
 
 .btn-form {
-    background-color: #2B4D6B;
-    border-radius: 18px;
-    width: 194px;
-    height: 48px;
+    background: transparent;
+    border-radius: 6px;
+    width: 180px;
+    height: 42px;
     color: #fff;
+    border: 2px solid #fff;
     font-weight: 600;
     font-size: 20px;
     transition: .2s ease-out;
+    margin-bottom: auto;
 }
 
-.btn-form:hover{
-    background-color: #123350;
+.btn-form:hover {
+    background: #0D88F9;
+    border-color: transparent;
 }
 
-.back-home{
+.back-home {
     position: absolute;
     top: 12px;
     left: -40px;
@@ -42,12 +45,12 @@ button {
     font-size: 18px;
     align-items: center;
     gap: 4px;
-    width: fit-content  ;
+    width: fit-content;
 }
 
 /*overriding bootstrap css*/
 
-input{
+input {
     border: none !important;
     box-shadow: none !important;
 }
@@ -55,7 +58,7 @@ input{
 input:focus,
 select:focus,
 textarea:focus,
-button:focus{
+button:focus {
     outline: none !important;
     box-shadow: none !important;
     border: none;
@@ -65,11 +68,36 @@ button:focus{
     transition: transform 0.1s ease;
 }
 
-.form-floating{
-    input{
+.form-floating {
+
+    input {
         width: 100% !important;
         height: 100% !important;
+        padding: 0 !important;
+        min-height: unset !important;
+        font-size: 16px !important;
+        padding-left: calc(0.15rem + 10px) !important;
+        padding-right: calc(0.15rem + 10px) !important;
     }
+
+    label {
+        padding: 0 0 0 10px !important;
+        transform: translateY(30%);
+        background: none !important;
+    }
+
+    label::after {
+        background: none !important;
+    }
+
+}
+
+.form-floating>.form-control:focus~label,
+.form-floating>.form-control:not(:placeholder-shown)~label,
+.form-floating>.form-control-plaintext~label,
+.form-floating>.form-select~label {
+    transform: scale(0.85) translateY(-0.3rem) translateX(0.15rem);
+    background: none !important;
 }
 
 /*responsive*/
