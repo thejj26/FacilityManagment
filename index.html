@@ -7,24 +7,25 @@
     <link rel="stylesheet" href="./assets/css/bootstrap-5.3.2-dist/css/bootstrap.css">
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="./assets/css/index.css">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,100,0,0" />
     <title>Home</title>
 </head>
 
 <body>
-    <section class="landing">
-        <header class="container">
-            <div class="maxw" aria-colspan="user-invalid">
+    <section class="landing container">
+        <header>
+            <div>
                 <img src="" alt="Facility Managment logo" class="logo">
                 <nav>
-                    <div class="desktop-menu">
-                        <div class="no-user">
+                    <div class="desktop-menu d-none d-md-flex d-lg-flex d-xl-flex">
+                        <div class="no-user d-flex">
                             <a href="./login.html">Log in</a>
                             <a href="./register.html">Sign up</a>
                         </div>
-                        <div class="user">
+                        <div class="user d-none">
                             <a href="">Facilities</a>
-                            <div class="dropdown">
+                            <div class="dropdown-center">
                                 <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
                                     <span class="material-symbols-outlined">
                                         account_circle
@@ -40,7 +41,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mobile-menu">
+                    <div class="mobile-menu d-sm-flex d-md-none">
                         <div class="no-user">
                             <a data-bs-toggle="offcanvas" href="#mobileUserMenu">
                                 <span class="material-symbols-outlined">
@@ -48,43 +49,45 @@
                                 </span>
                             </a>
                         </div>
-                        <div class="user">
+                        <div class="user d-none">
+                            <a href="">Facilities</a>
                             <a data-bs-toggle="offcanvas" href="#mobileAccountMenu">
                                 <span class="material-symbols-outlined">
                                     account_circle
                                 </span>
                             </a>
                         </div>
-                        <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileUserMenu">
-                            <div class="offcanvas-body">
-                                <a href="./login.html">Log in</a>
-                                <a href="./register.html">Sign up</a>
-                            </div>
-                        </div>
-                        <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileAccountMenu">
-                            <div class="offcanvas-header">
-                                <h5 class="offcanvas-title">Account</h5>
-                            </div>
-                            <div class="offcanvas-body">
-                                <a href="">Manage</a>
-                                <a href="">Log out</a>
-                            </div>
-                        </div>
+
                     </div>
                 </nav>
             </div>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileUserMenu">
+                <div class="offcanvas-body">
+                    <a href="./login.html">Log in</a>
+                    <a href="./register.html">Sign up</a>
+                </div>
+            </div>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileAccountMenu">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title">Account</h5>
+                </div>
+                <div class="offcanvas-body">
+                    <a href="">Manage</a>
+                    <a href="">Log out</a>
+                </div>
+            </div>
         </header>
-            <div class="intro-content">
-                <h3>The solution to your apartment rental business needs, all in one place.</h3>
-                <hr>
-                <button>Get Started</button>
-            </div>
-            <div class="scrollDown">
-                <img src="" alt="scroll down">
-            </div>
+        <div class="intro-content">
+            <h3>The solution to your apartment rental business needs, all in one place.</h3>
+            <hr>
+            <button>Get Started</button>
+        </div>
+        <div class="scrollDown">
+            <img src="" alt="scroll">
+        </div>
     </section>
-
     <script src="./assets/css/bootstrap-5.3.2-dist/js/bootstrap.bundle.js"></script>
+    <script src="./assets/js/index.js"></script>
 </body>
 
 </html>

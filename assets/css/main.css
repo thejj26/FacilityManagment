@@ -1,6 +1,10 @@
 * {
     margin: 0;
     padding: 0;
+
+    a {
+        text-decoration: none;
+    }
 }
 
 .container {
@@ -98,6 +102,10 @@ button:focus {
 .form-floating>.form-select~label {
     transform: scale(0.85) translateY(-0.3rem) translateX(0.15rem);
     background: none !important;
+}
+
+.offcanvas-backdrop.show {
+    opacity: 0;
 }
 
 /*responsive*/
