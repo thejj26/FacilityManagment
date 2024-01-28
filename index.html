@@ -14,80 +14,81 @@
 
 <body>
     <section class="landing container">
-        <header>
-            <div>
-                <img src="" alt="Facility Managment logo" class="logo">
-                <nav>
-                    <div class="desktop-menu d-none d-md-flex d-lg-flex d-xl-flex">
-                        <div class="no-user d-flex">
-                            <a href="./login.html">Log in</a>
-                            <a href="./register.html">Sign up</a>
+        <div class="maxw">
+            <header>
+                <div>
+                    <img src="" alt="Facility Managment logo" class="logo">
+                    <nav>
+                        <div class="desktop-menu d-none d-md-flex d-lg-flex d-xl-flex">
+                            <div class="no-user d-flex">
+                                <a href="./login.html">Log in</a>
+                                <a href="./register.html">Sign up</a>
+                            </div>
+                            <div class="user d-none">
+                                <a href="">Facilities</a>
+                                <div class="dropdown-center">
+                                    <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                                        <span class="material-symbols-outlined">
+                                            account_circle
+                                        </span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <h6 class="dropdown-header">Account</h6>
+                                        </li>
+                                        <li><a class="dropdown-item" href="">Manage</a></li>
+                                        <li><a class="dropdown-item" href="">Log out</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="user d-none">
-                            <a href="">Facilities</a>
-                            <div class="dropdown-center">
-                                <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                        <div class="mobile-menu d-sm-flex d-md-none">
+                            <div class="no-user">
+                                <a data-bs-toggle="offcanvas" href="#mobileUserMenu">
+                                    <span class="material-symbols-outlined">
+                                        menu
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="user d-none">
+                                <a href="">Facilities</a>
+                                <a data-bs-toggle="offcanvas" href="#mobileAccountMenu">
                                     <span class="material-symbols-outlined">
                                         account_circle
                                     </span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <h6 class="dropdown-header">Account</h6>
-                                    </li>
-                                    <li><a class="dropdown-item" href="">Manage</a></li>
-                                    <li><a class="dropdown-item" href="">Log out</a></li>
-                                </ul>
+                                </a>
                             </div>
                         </div>
+                    </nav>
+                </div>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileUserMenu">
+                    <div class="offcanvas-body">
+                        <a href="./login.html">Log in</a>
+                        <a href="./register.html">Sign up</a>
                     </div>
-                    <div class="mobile-menu d-sm-flex d-md-none">
-                        <div class="no-user">
-                            <a data-bs-toggle="offcanvas" href="#mobileUserMenu">
-                                <span class="material-symbols-outlined">
-                                    menu
-                                </span>
-                            </a>
-                        </div>
-                        <div class="user d-none">
-                            <a href="">Facilities</a>
-                            <a data-bs-toggle="offcanvas" href="#mobileAccountMenu">
-                                <span class="material-symbols-outlined">
-                                    account_circle
-                                </span>
-                            </a>
-                        </div>
-
+                </div>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileAccountMenu">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title">Account</h5>
                     </div>
-                </nav>
-            </div>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileUserMenu">
-                <div class="offcanvas-body">
-                    <a href="./login.html">Log in</a>
-                    <a href="./register.html">Sign up</a>
+                    <div class="offcanvas-body">
+                        <a href="">Manage</a>
+                        <a href="">Log out</a>
+                    </div>
                 </div>
+            </header>
+            <div class="intro-content">
+                <h3>The solution to your apartment rental business needs, all in one place.</h3>
+                <button>Get Started</button>
             </div>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileAccountMenu">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title">Account</h5>
-                </div>
-                <div class="offcanvas-body">
-                    <a href="">Manage</a>
-                    <a href="">Log out</a>
-                </div>
+            <div class="scroll-down" onclick='document.querySelector(".second").scrollIntoView()'>
             </div>
-        </header>
-        <div class="intro-content">
-            <h3>The solution to your apartment rental business needs, all in one place.</h3>
-            <hr>
-            <button>Get Started</button>
-        </div>
-        <div class="scrollDown">
-            <img src="" alt="scroll">
         </div>
     </section>
+    <section class="second"></section>
     <script src="./assets/css/bootstrap-5.3.2-dist/js/bootstrap.bundle.js"></script>
     <script src="./assets/js/index.js"></script>
+
 </body>
 
 </html>

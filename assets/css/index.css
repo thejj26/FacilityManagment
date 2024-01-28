@@ -1,3 +1,8 @@
+* {
+    color: #fff;
+    scroll-behavior: smooth;
+}
+
 .dropdown-toggle::after {
     display: none !important;
 }
@@ -11,9 +16,12 @@
 }
 
 .landing {
+    position: relative;
     height: 100vh;
-    background-color: rgb(158, 180, 255);
-    /*placeholder*/
+    background-image: url("../img/skyscrapers_background.jpeg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
 
     header>div {
         display: flex;
@@ -21,6 +29,19 @@
         justify-content: space-between;
         padding-top: 24px;
     }
+}
+
+.scroll-down {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, -32px);
+    cursor: pointer;
+    background-image: url("../img/scrolldown.gif");
+    width: 52px;
+    height: 32px;
+    background-position: 50%;
+    background-size: 800%;
 }
 
 .no-user {
@@ -81,12 +102,12 @@
             border-color: transparent;
         }
 
-        a:has(span){
+        a:has(span) {
             border: none;
-            padding: none;
+            padding: 0 !important;
         }
 
-        a:has(span):hover{
+        a:has(span):hover {
             background: none;
         }
 
@@ -142,12 +163,12 @@
         width: 110px;
         box-sizing: border-box;
         text-align: center;
+        transition: .2s ease-out;
     }
 
     a:hover {
         background: #0D88F9;
         border-color: transparent;
-        transition: .2s ease-out;
     }
 }
 
@@ -156,20 +177,66 @@
     font-size: 24px;
 }
 
-.dropdown-menu{
+.dropdown-menu {
     border: none;
 }
 
-.dropdown-menu a{
+.dropdown-menu a {
     border: none !important;
-    border-radius:unset !important;
+    border-radius: unset !important;
 }
 
-.dropdown-menu a:hover{
+.dropdown-menu a:hover {
     background: #a7a7a741 !important;
 }
 
-.dropdown-menu h6{
+.dropdown-menu h6 {
     text-align: center;
     font-size: 16px;
+}
+
+.intro-content {
+    margin-top: 200px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h3 {
+        font-size: 72px;
+        position: relative;
+        padding: 0 32px;
+    }
+
+    h3::after {
+        content: "";
+        position: absolute;
+        width: 50%;
+        height: 2px;
+        background-color: #fff;
+        bottom: 0;
+        left: 0;
+        transform: translate(50%, 100px);
+    }
+
+    button {
+        margin-top: 168px;
+        background: transparent;
+        border: 3px solid #fff;
+        border-radius: 6px;
+        font-size: 40px;
+        width: 377px;
+        height: 67px;
+        transition: 0.2s ease-in-out;
+    }
+
+    button:hover {
+        background-color: #0D88F9;
+        border-color: transparent;
+    }
+}
+
+.second {
+    height: 100vh;
 }
