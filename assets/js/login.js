@@ -24,7 +24,8 @@ async function attemptLogin() {
     if (userData == null) credentialsAlert.style.display = "block"    //no user is found, alert shows
     else {   //user is found
         localStorage.setItem("userID", JSON.stringify(userData.id))
-        window.location = "../../index.html"
+        if (!!sessionStorage.getItem("getStartedCached")) window.location = "../../facilities.html"   //if user clicked on get started
+                    else window.location = "../../index.html"
     }
 }
 function generateQuery() {  //generates a query to find all matching users

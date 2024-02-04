@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/bootstrap-5.3.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/facilities.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,100,0,0" />
+    <title>Facilities</title>
+</head>
+
+<body>
+    <section class="overview container">
+        <div class="maxw">
+            <header>
+                <div>
+                    <img src="" alt="Facility Managment logo" class="logo">
+                    <nav>
+                        <div class="desktop-menu d-none d-md-flex d-lg-flex d-xl-flex">
+                            <div class="user d-flex">
+                                <a href="./index.html">Home</a>
+                                <div class="dropdown-center">
+                                    <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                                        <span class="material-symbols-outlined">
+                                            account_circle
+                                        </span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <h6 class="dropdown-header">Account</h6>
+                                        </li>
+                                        <li><a class="dropdown-item" href="">Manage</a></li>
+                                        <li><a class="dropdown-item logout">Log out</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile-menu d-sm-flex d-md-none">
+                            <div class="user d-flex">
+                                <a href="./index.html">Home</a>
+                                <a data-bs-toggle="offcanvas" href="#mobileAccountMenu">
+                                    <span class="material-symbols-outlined">
+                                        account_circle
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileAccountMenu">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title">Account</h5>
+                        </div>
+                        <div class="offcanvas-body">
+                            <a href="">Manage</a>
+                            <a class="logout">Log out</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <script src="./assets/css/bootstrap-5.3.2-dist/js/bootstrap.bundle.js"></script>
+        <script type="module" src="./assets/js/facilities.js"></script>
+</body>
+
+</html>
