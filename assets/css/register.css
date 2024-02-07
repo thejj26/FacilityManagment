@@ -1,5 +1,6 @@
 body {
     background-color: #155998;
+    overflow: hidden;
 }
 
 .maxw{
@@ -9,6 +10,18 @@ body {
 section,
 .row {
     height: 100vh;
+}
+
+.bg-img {
+    position: absolute;
+    left: 55%;
+    bottom: 0;
+    height: 100%;
+    min-height: 100%;
+    opacity: 30%;
+    padding: 0;
+    max-width: unset !important;
+    width: auto !important;
 }
 
 .register-container {
@@ -60,4 +73,33 @@ section,
         font-size: 18px;
         height: fit-content;
     } 
+}
+
+@media only screen and (max-width:992px) {
+    .bg-img {
+        left: 20%;
+    }
+    .register-box{
+        min-width: 336px !important;
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .bg-img {
+        left: -24px;
+    }
+
+    .register-box{
+        max-width: 400px;
+        margin: 0 auto;
+        height: 400px;
+    }
+
+    .register-box>a{
+        font-size: 20px;
+    }
+
+    .btn-form{
+        margin: auto 0;
+    }
 }

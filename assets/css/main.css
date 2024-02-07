@@ -120,4 +120,16 @@ button:focus {
     .container {
         padding: 0 24px;
     }
+
+    .btn-form{
+        font-size: 24px;
+        width: 200px;
+        height: 52px;
+    }
+
+    .back-home{
+        left: 8px;
+        padding: 0;
+        top: 24px;
+    }
 }
