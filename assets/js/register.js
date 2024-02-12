@@ -52,7 +52,9 @@ async function attemptRegister() {  //attempts to register the user
             const registationData = { //user data
                 email: inputEmail.value,
                 password: inputPassword.value,
-                username: inputEmail.value.split("@")[0]    //default username is the email without the domain name
+                username: inputEmail.value.split("@")[0],    //default username is the email without the domain name
+                fullname: "",
+                company:""
             }
             const newUserDoc = doc(usersCollection) //new doc to register the user
             setDoc(newUserDoc, registationData).then(async () => {    //attempts to write new data to db
@@ -61,7 +63,7 @@ async function attemptRegister() {  //attempts to register the user
                 const currentUserQuery = query(usersCollection, where("email", "==", inputEmail.value))
                 const queryResult = await getDocs(currentUserQuery)
                 queryResult.forEach(doc => {
-                    localStorage.setItem("userID", JSON.stringify(doc.id))
+                    localStorage.setItem("userID", doc.id)
                     if (!!sessionStorage.getItem("getStartedCached")) window.location = "../../facilities.html"   //if user clicked on get started
                     else window.location = "../../index.html"
                 })
