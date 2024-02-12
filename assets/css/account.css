@@ -1,5 +1,6 @@
 body {
   overflow-x: hidden;
+  background-color: #122638;
 }
 
 h4 {
@@ -8,6 +9,20 @@ h4 {
 
 section {
   min-height: 100vh;
+  display: flex;
+}
+
+.maxw {
+  width: 100%;
+}
+
+.content {
+  height: 100%;
+  padding: 32px;
+  margin: 0 20px;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
 }
 
 span.account-circle {
@@ -31,6 +46,10 @@ span.account-general {
   align-items: center;
 }
 
+.left {
+  color: #122638;
+}
+
 .left h3 {
   text-align: center;
 }
@@ -51,14 +70,16 @@ span.account-general {
   padding: 4px 12px;
   border-radius: 8px;
   transition: 0.2s ease-out;
+  position: relative;
+  transform: translateX(-36px);
 }
 
 #delAccount:hover {
-  background: rgba(255, 0, 0, 0.11);
+  background: #ff00001c;
 }
 
 .account-details {
-  width: 90%;
+  width: 100%;
 }
 
 .change-password {
@@ -87,6 +108,7 @@ form {
 label {
   padding-top: 24px;
   padding-left: 8px;
+  color: #122638;
 }
 
 input {
@@ -97,4 +119,56 @@ input {
   font-size: 20px;
   color: rgba(0, 0, 0, 0.6) !important;
   font-weight: 400;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  gap: 16px;
+  width: 78%;
+}
+
+.buttons button {
+  font-size: 20px;
+  background: transparent;
+  border-radius: 11px;
+  border: 1px solid;
+  transition: .2s ease-in-out;
+  padding: 4px 36px;
+  height: fit-content;
+  height: fit-content;
+}
+
+#btnRevert {
+  border-color: #f00;
+  color: #f00;
+}
+
+#btnRevert:hover {
+  background-color: #ff00001c;
+  border-color: transparent;
+}
+
+#btnSave {
+  color: #2b4d6b;
+  border-color: #2b4d6b;
+}
+
+#btnSave:hover {
+  background-color: #0D88F9;
+  border-color: transparent;
+  color: #fff;
+}
+
+.right {
+  padding-right: 10%;
+}
+
+.img-bg {
+  height: calc(100% + 64px);
+  width: auto;
+  position: absolute;
+  top: -5%;
+  right: -55%;
 }
