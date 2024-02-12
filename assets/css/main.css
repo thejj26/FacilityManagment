@@ -52,6 +52,11 @@ button {
     width: fit-content;
 }
 
+.logo{
+    height: 42px;
+    width: auto;
+}
+
 /*overriding bootstrap css*/
 
 input {

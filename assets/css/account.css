@@ -1,0 +1,100 @@
+body {
+  overflow-x: hidden;
+}
+
+h4 {
+  margin: 0;
+}
+
+section {
+  min-height: 100vh;
+}
+
+span.account-circle {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  font-size: 157px;
+  color: #000;
+}
+
+span.delete-account {
+  font-size: 20px;
+}
+
+span.account-general {
+  font-size: 27px;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left h3 {
+  text-align: center;
+}
+
+.info-header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#delAccount {
+  background: none;
+  color: #f00;
+  display: flex;
+  font-size: 20px;
+  align-items: center;
+  gap: 16px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  transition: 0.2s ease-out;
+}
+
+#delAccount:hover {
+  background: rgba(255, 0, 0, 0.11);
+}
+
+.account-details {
+  width: 90%;
+}
+
+.change-password {
+  width: 80%;
+}
+
+.acc-header {
+  display: flex;
+  gap: 112px;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #122638;
+}
+
+.acc-header * {
+  color: #2b4d6b;
+}
+
+form {
+  margin-left: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  padding-top: 24px;
+  padding-left: 8px;
+}
+
+input {
+  padding-left: 8px !important;
+  border: 2px solid #bebebe !important;
+  width: 415px !important;
+  height: 40px !important;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.6) !important;
+  font-weight: 400;
+}
