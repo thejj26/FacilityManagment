@@ -75,7 +75,7 @@ span.account-general {
 }
 
 #delAccount:hover {
-  background: #ff00001c;
+  background: #ff000031;
 }
 
 .account-details {
@@ -127,6 +127,7 @@ input {
   justify-content: end;
   gap: 16px;
   width: 78%;
+  margin-top: 24px;
 }
 
 .buttons button {
@@ -146,7 +147,7 @@ input {
 }
 
 #btnRevert:hover {
-  background-color: #ff00001c;
+  background-color: #ff000031;
   border-color: transparent;
 }
 
@@ -173,6 +174,139 @@ input {
   right: -55%;
 }
 
-sup{
-  color:#f00;
+sup {
+  color: #f00;
+}
+
+.toast-alert {
+  position: absolute;
+  left: 50%;
+  top: -80px;
+  width: 240px;
+  transform: translate(-110px, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  box-sizing: border-box;
+  border-radius: 8px;
+  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.75);
+  cursor: default;
+  transition: top .1s, opacity .2s;
+  opacity: 0;
+  background: #ff7676;
+  color: #000000;
+  padding: 16px 8px;
+}
+
+.toast-alert.active {
+  top: 12px;
+  opacity: 1;
+  animation-duration: .15s;
+  animation-delay: 3s;
+  animation-name: flyOut;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes flyOut {
+  from {
+    top: 12px;
+    opacity: 1;
+  }
+
+  to {
+    top: -80px;
+    opacity: 0;
+  }
+}
+
+.toast-alert.info {
+  background: #718da5;
+  color: #e6e6e6;
+}
+
+.toast-alert p {
+  margin: 0;
+  text-align: center;
+}
+
+.back-home {
+  color: #000 !important;
+  left: 0;
+}
+.back-home span{
+  color:#000 !important;
+}
+
+@media only screen and (max-width:1440px) {
+  .img-bg {
+    display: none;
+  }
+
+  .account-details,
+  .change-password {
+    width: 100%;
+  }
+
+  .right {
+    padding-right: 0;
+  }
+}
+
+@media only screen and (max-width:992px) {
+  #delAccount {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .acc-header {
+    gap: 0;
+    justify-content: space-between;
+  }
+
+  .acc-header h4 {
+    margin: auto;
+  }
+
+}
+
+@media only screen and (max-width:768px) {
+  input {
+    width: 100% !important;
+  }
+
+  form {
+    margin-left: 0;
+  }
+
+  #delAccount {
+    position: absolute;
+    bottom: 30px;
+    flex-direction: row;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .content {
+    padding-bottom: 100px;
+  }
+
+  .buttons {
+    width: 100%;
+    justify-content: space-around;
+    padding-bottom: 0 24px;
+  }
+
+  .buttons button {
+    padding: 4px 18px;
+  }
+
+  .info-header span {
+    font-size: 52px;
+  }
+
+  .info-header h3 {
+    font-size: 20px;
+  }
 }

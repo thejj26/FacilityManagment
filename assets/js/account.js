@@ -1,17 +1,19 @@
 import db from './firebase.mjs'
-import { collection, query, where, getDocs, doc, getDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js'
+import { collection, query, where, getDocs, doc, getDoc, updateDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js'
 
 const usersCollection = collection(db, "users")
 //html dom elements
-let inputUsername = document.querySelector("#inputUsername")
-let inputEmail = document.querySelector("#inputEmail")
-let inputFullName = document.querySelector("#inputName")
-let inputCompany = document.querySelector("#inputCompany")
-let inputOldPassword = document.querySelector("#oldPassword")
-let inputNewPassword = document.querySelector("#newPassword")
-let inputConfirmNewPassword = document.querySelector("#confirmNewPassword")
-let btnRevert = document.querySelector("#btnRevert")
-let btnSaveChanges = document.querySelector("#btnSave")
+const inputUsername = document.querySelector("#inputUsername")
+const inputEmail = document.querySelector("#inputEmail")
+const inputFullName = document.querySelector("#inputName")
+const inputCompany = document.querySelector("#inputCompany")
+const inputOldPassword = document.querySelector("#oldPassword")
+const inputNewPassword = document.querySelector("#newPassword")
+const inputConfirmNewPassword = document.querySelector("#confirmNewPassword")
+const btnRevert = document.querySelector("#btnRevert")
+const btnSaveChanges = document.querySelector("#btnSave")
+const btnDel = document.querySelector("#delAccount")
+
 //fetching user data
 const userDocRef = doc(db, "users", localStorage.getItem("userID"))
 const userDocSnap = await getDoc(userDocRef)
@@ -25,6 +27,7 @@ try {
 
 btnRevert.addEventListener("click", () => { loadUserData(userDocSnap.data()) }) //resets user data to the inital value
 btnSaveChanges.addEventListener("click", () => { attemptSave(userDocSnap.data()) })
+btnDel.addEventListener("click", deleteAccount)
 
 function loadUserData(userData) {    //loads user data into the input fields
     inputUsername.value = userData.username
@@ -114,30 +117,42 @@ async function attemptSave(userData) {
     inputConfirmNewPassword.value = ""
     console.log(valiadationResult)
     if (valiadationResult != 0) {
-        switch (valiadateData) {
+        switch (valiadationResult) {
             case 1: //no username
+                setToastAlert("Username cannot be blank", true, false)
                 break
             case 2: //no email
+                setToastAlert("Email cannot be blank", true, false)
                 break
             case 3: //invalid email
+                setToastAlert("Invalid email", true, false)
                 break
             case 4: //email is already in use
+                setToastAlert("Email is already in use", true, false)
                 break
             case 5: //email error
+                setToastAlert("Error valiadating email", true, false)
                 break
             case 6: //no old password
+                setToastAlert("Enter old password", true, false)
                 break
             case 7: //incorrect old password
+                setToastAlert("Incorrect old password", true, false)
                 break
             case 8: //short password
+                setToastAlert("New password must contain at least 6 characters", true, false)
                 break
             case 9: //passwords dont match
+                setToastAlert("Passwords don't match", true, false)
                 break
             case 10:    //password didnt change
+                setToastAlert("New password cannot be the same as the old one", true, false)
                 break
             case 11:    //no data change
+                setToastAlert("No information was changed", false, false)
                 break
             default:    //valiadation error
+                setToastAlert("Error valiadating information", true, false)
                 break
         }
         return
@@ -150,9 +165,35 @@ async function attemptSave(userData) {
         company: inputCompany.value.trim()
     }
     updateDoc(userDocRef, userObject).then(() => {  //updates the user doc
-        console.log("success")
+        setToastAlert("Information updated", false, true)
     }).catch(() => {
-        console.log("error")
+        setToastAlert("Error updating information", true, false)
     })
 }
-//TODO: del account, error handling, notifying and refreshong the page
+//handlees the toast alert animation
+function setToastAlert(text, isAlert, refreshPage) {
+    //elements
+    const alertToast = document.querySelector(".toast-alert")
+    const toastContent = alertToast.firstElementChild
+    //sets the text message
+    toastContent.innerHTML = text
+    //handles classes
+    alertToast.classList.add("active")
+    if (isAlert) alertToast.classList.remove("info")
+    else alertToast.classList.add("info")
+    //removes the active class after toast dissapears
+    alertToast.addEventListener("animationend", () => {
+        alertToast.classList.remove("active")
+        if (refreshPage) window.location.reload()
+    })
+}
+//deletes the user account
+function deleteAccount() {
+    const response = confirm("Are you sure you want to delete your account? This action cannot be undone.")
+    if (!response) return   //user confirmation
+    deleteDoc(userDocRef).then(() => {
+        window.location = "../../index.html"
+    }).catch(() => {
+        setToastAlert("Error while deleting account", true, false)
+    })
+}
