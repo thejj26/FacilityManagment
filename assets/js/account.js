@@ -192,7 +192,7 @@ function deleteAccount() {
     const response = confirm("Are you sure you want to delete your account? This action cannot be undone.")
     if (!response) return   //user confirmation
     deleteDoc(userDocRef).then(() => {
-        window.location = "../../index.html"
+        window.location = "../../index.html"    //returning to the homepage after deleting account
     }).catch(() => {
         setToastAlert("Error while deleting account", true, false)
     })
