@@ -24,3 +24,34 @@ header {
 .navbar-nav a{
     color: #fff;
 }
+.active{
+  text-decoration: underline;
+  color:  #fff;
+}
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+  color: #fff;
+}
+.navbar-nav a {
+  color: #ffffff92;
+}
+.navbar-nav button{
+  background-image: linear-gradient(to right, #F159F4 , #0D88F9);
+  border-radius: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  a{
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+}
+.title-content{
+  margin-top: 48px;
+  width: 100%;
+  display: flex;
+  h3{
+    padding: 10px;
+    border-bottom: 1px solid #525252;
+    width: 100%;
+  }
+}
