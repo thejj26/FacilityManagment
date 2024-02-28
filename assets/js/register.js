@@ -9,7 +9,6 @@ const inputPasswordConfirm = document.querySelector('#passwordConfrimInput')
 const btnRegister = document.querySelector("#btnRegister")
 const registerAlert = document.querySelector("#alert")
 
-//TODO register on enter key press
 btnRegister.addEventListener("click", attemptRegister)
 
 function valiadateRegister() {   //valiadates user data
@@ -43,7 +42,7 @@ function valiadateRegister() {   //valiadates user data
             break
     }
 }
-//TODO handle invalid data
+
 async function attemptRegister() {  //attempts to register the user
     btnRegister.removeEventListener("click", attemptRegister)    //removes event listener to avoid spamming
     const valiadationStatus = await valiadateRegister()

@@ -1,45 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/bootstrap-5.3.2-dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="./assets/css/main.css" />
-    <link rel="stylesheet" href="./assets/css/overview.css" />
+    <link rel="stylesheet" href="./assets/css/bootstrap-5.3.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/overview.css">
     <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <title>General Overview</title>
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,100,0,0" />
+    <title>Facilities Overview</title>
 </head>
-<body>
-    <header>
-        <div>
-            <img src="/assets/img/logo_white.svg">
-            <nav class="navbar navbar-expand-lg">
-                <div class="container-fluid">
-                  
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                      <a class="nav-link active" aria-current="page" href="#">Facility Overview</a>
-                      <a class="nav-link" href="#">General Statistics</a>
-                      <button><a class="nav-link" href="#">Add Facility</a></button>
 
+<body>
+    <header class="container">
+        <div class="maxw">
+            <img src="./assets/img/logo_white.svg" alt="Facility Managment logo" class="logo">
+            <nav>
+                <div class="desktop-menu d-none d-md-flex d-lg-flex d-xl-flex">
+                    <div class="user d-flex">
+                        <a href="./index.html">Home</a>
+                        <a href="#">General Statistics</a>
+                        <div class="dropdown-center">
+                            <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                                <span class="material-symbols-outlined">
+                                    account_circle
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <h6 class="dropdown-header">Account</h6>
+                                </li>
+                                <li><a class="dropdown-item" href="./account.html">Manage</a></li>
+                                <li><a class="dropdown-item logout" href="">Log out</a></li>
+                            </ul>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </nav>
+                <div class="mobile-menu d-sm-flex d-md-none">
+                    <div class="user d-flex">
+                        <a data-bs-toggle="offcanvas" href="#mobileUserMenu">
+                            <span class="material-symbols-outlined" id="menu">
+                                menu
+                            </span>
+                        </a>
+                        <a data-bs-toggle="offcanvas" href="#mobileAccountMenu">
+                            <span class="material-symbols-outlined">
+                                account_circle
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileUserMenu">
+            <div class="offcanvas-body">
+                <a href="./index.html">Home</a>
+                <a href="#">General Statistics</a>
+            </div>
+        </div>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileAccountMenu">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Account</h5>
+            </div>
+            <div class="offcanvas-body">
+                <a href="./account.html">Manage</a>
+                <a href="" class="logout">Log out</a>
+            </div>
         </div>
     </header>
     <section class="container">
         <div class="maxw">
-            <div class="title-content">
-              <h3>Facility Overview</h3>
-            </div>
         </div>
     </section>
     <script src="./assets/css/bootstrap-5.3.2-dist/js/bootstrap.bundle.js"></script>
-
+    <script src="./assets/js/user-check.js" type="module"></script>
+    <script type="module" src="./assets/js/overview.js"></script>
 </body>
+
 </html>
