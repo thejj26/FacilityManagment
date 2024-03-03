@@ -13,7 +13,7 @@
 
 .maxw {
     max-width: 1440px;
-    margin: 0 auto;
+    margin: 0 auto !important;
 }
 
 button {
@@ -111,6 +111,11 @@ button:focus {
 
 .offcanvas-backdrop.show {
     opacity: 0;
+}
+
+.row{
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .row > *{
