@@ -26,12 +26,9 @@ async function fetchFacilities(userID) {    //fetches facilities that belong to 
     )
     const queryResult = await getDocs(facilitiesQuery)  //gets coresponding docs
     queryResult.forEach(doc => {
-        facilities.push(doc) //adds facility docs to the array
         addFacilityCard(doc)//adds docs to the html
     })
 }
-
-let facilities = []
 
 function generateFacilityCard(facility) {   //generates a html element with all the needed info from the facility
     return `
@@ -70,24 +67,70 @@ function generateFacilityCard(facility) {   //generates a html element with all 
    `
 }
 
-function addFacilityCard(facility) {
-    facilityList.innerHTML += generateFacilityCard(facility)
+function addFacilityCard(facility) {    //adds the generated cards to the site and adds event listeners where needed
+    facilityList.innerHTML += generateFacilityCard(facility)    //adds the card to the facilities list on screen
     document.querySelector(`#edit-${facility.id}`).addEventListener("click", () => {
-        editFacility(facility.id)
+        editFacility(facility)  //editing the specific facility
     })
     document.querySelector(`#delete-${facility.id}`).addEventListener("click", () => {
-        deleteFacility(facility.id)
+        deleteFacility(facility.id) //deleting the specific facility
     })
 }
 
-function deleteFacility(id) {
+function deleteFacility(id) {   //facility deletion
     const userResponse = confirm("Are you sure you want to delete this facility? This action cannot be undone.")
-    if (!userResponse) return
-    deleteDoc(doc(db, "facilities", id)).then(() => {
-        window.location.reload()
+    if (!userResponse) return   //if user has  canceled
+    deleteDoc(doc(db, "facilities", id)).then(() => {   //user has agreed -> attepmting deletion
+        window.location.reload()    //realoading to refresh the data
     }).catch(() => {
-        alert("Error deleting facility, try again or refresh the page.")
+        alert("Error deleting facility, try again or refresh the page.")    //error
     })
 }
 
-function editFacility(id) { }
+function editFacility(facility) {   //facility edit
+    document.querySelector("#hidden").click()   //opening of the modal
+    //needed DOM elements
+    const facName = document.querySelector("#editFacName")
+    const facType = document.querySelector("#editType")
+    const facCity = document.querySelector("#editFacCity")
+    const facAdd1 = document.querySelector("#editFacAdd1")
+    const facAdd2 = document.querySelector("#editFacAdd2")
+
+    document.querySelector("#btnRevert").addEventListener("click", () => {  //reverts data to the default (unchanged) state
+        facName.value = facility.data().name
+        facType.value = facility.data().type
+        facCity.value = facility.data().city
+        facAdd1.value = facility.data().address1
+        facAdd2.value = facility.data().address2
+    })
+    document.querySelector("#btnRevert").click()    //lodaing data
+    document.querySelector("#facName").innerHTML = facility.data().name //facility name at the top
+    //attepting to save the data and update the facility doc
+    document.querySelector("#btnSave").addEventListener("click", () => {
+        switch (true) { //checks if the entred data is valid
+            case (facName.value.trim().length < 1): //no name
+
+                break
+            case (facCity.value.trim().length < 1): //no city
+                break
+            case (facAdd1.value.trim().length < 1): //no address
+
+                break
+            default:    //data is valid
+                const facilityObject = {    //object used to update the doc
+                    name: facName.value.trim(),
+                    type: facType.value,
+                    city: facCity.value.trim(),
+                    address1: facAdd1.value.trim(),
+                    address2: facAdd2.value.trim() ?? "",
+                    revenue: facility.data().revenue,
+                    owner: facility.data().owner
+                }
+        }
+    })
+}
+// TODO:
+// -finish facility edit
+// -adding facilities
+// -responsive
+// -delete users's facilities when user is deleted

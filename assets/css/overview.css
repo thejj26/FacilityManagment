@@ -252,7 +252,7 @@ span.building {
     color: #969696
 }
 
-.list.hide-after::after{
+.list.hide-after::after {
     display: none;
 }
 
@@ -322,4 +322,106 @@ span.building {
 .facility .info:hover,
 .facility .manage>div:hover {
     background-color: #e2e2e2;
+}
+
+.modal {
+    --bs-modal-width: 80%;
+}
+
+.facility-form {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.facility-form>div {
+    width: 45%;
+}
+
+.facility-form sup {
+    color: #f00;
+}
+
+.facility-form .name {
+    margin-bottom: 48px;
+}
+
+.facility-form .name h3,
+.facility-form .type h3,
+.facility-form .right h3 {
+    font-size: 30px;
+    font-weight: bold;
+    border-bottom: 1px solid #000;
+    padding-bottom: 8px;
+    width: 90%;
+    color: #000;
+    margin-bottom: 16px;
+}
+
+.facility-form .name input,
+.facility-form .type select {
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+    padding-left: 8px;
+    border: 1px solid #bebebe !important;
+    border-radius: 11px;
+}
+
+.facility-form .location{
+    gap: 24px;
+}
+
+.facility-form .right h3 {
+    height: 40px;
+}
+
+.facility-form .location div {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+}
+
+.facility-form .location h4 {
+    font-size: 22px;
+    margin-bottom: 0;
+    width: 150px;
+}
+
+.facility-form .location input {
+    font-size: 20px;
+    height: 40px;
+    background: none;
+    width: calc(80% - 150px);
+    border-bottom: 1px solid #000 !important;
+}
+
+.modal-btn{
+    padding: 4px 12px;
+    font-size: 18px;
+}
+
+.modal-btn.confirm{
+    left: 50%;
+    transform: translateX(-50%);
+    background: #122638;
+    color: #fff;
+    border-radius: 8px;
+}
+
+.modal-btn.clear{
+    background: none;
+    color: #f00;
+    display: flex;
+    align-items: center;
+}
+
+#hidden{
+    display: none;
 }
