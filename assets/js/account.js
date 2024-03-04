@@ -2,6 +2,7 @@ import db from './firebase.mjs'
 import { collection, query, where, getDocs, doc, getDoc, updateDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js'
 
 const usersCollection = collection(db, "users")
+const facilitiesCollection = collection(db, "facilities")
 //html dom elements
 const inputUsername = document.querySelector("#inputUsername")
 const inputEmail = document.querySelector("#inputEmail")
@@ -188,12 +189,23 @@ function setToastAlert(text, isAlert, refreshPage) {
     })
 }
 //deletes the user account
-function deleteAccount() {
+async function deleteAccount() {
     const response = confirm("Are you sure you want to delete your account? This action cannot be undone.")
     if (!response) return   //user confirmation
-    deleteDoc(userDocRef).then(() => {
-        window.location = "../../index.html"    //returning to the homepage after deleting account
-    }).catch(() => {
-        setToastAlert("Error while deleting account", true, false)
+    const facilitiesQuery = query(facilitiesCollection, //query that checks for the facility owner
+        where("owner", "==", localStorage.getItem("userID"))
+    )
+    const queryResult = await getDocs(facilitiesQuery)
+    queryResult.forEach(_doc => {
+        deleteDoc(doc(db, "facilities", _doc.id)).then(() => {
+            deleteDoc(userDocRef).then(() => {
+                window.location = "../../index.html"    //returning to the homepage after deleting account
+            }).catch(() => {
+                setToastAlert("Error while deleting account", true, false)
+            })
+        }).catch(() => {
+            setToastAlert("Error while deleting account", true, false)
+        })
     })
+
 }

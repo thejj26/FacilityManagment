@@ -1,9 +1,25 @@
 import db from './firebase.mjs'
-import { collection, query, where, getDocs, doc, getDoc, updateDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js'
+import { collection, query, where, getDocs, doc, setDoc, updateDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js'
 
 const facilitiesCollection = collection(db, "facilities")
 
 const facilityList = document.querySelector("#facilityList")
+
+const facName = document.querySelector("#inputFacName")
+const facType = document.querySelector("#selectType")
+const facCity = document.querySelector("#inputFacCity")
+const facAdd1 = document.querySelector("#inputFacAdd1")
+const facAdd2 = document.querySelector("#inputFacAdd2")
+
+document.querySelector("#btnClear").addEventListener("click", () => {  //reverts data to the default (unchanged) state
+    facName.value = ""
+    facType.value = 1
+    facCity.value = ""
+    facAdd1.value = ""
+    facAdd2.value = ""
+})
+
+document.querySelector("#btnAdd").addEventListener("click", addNewFacility)
 
 document.querySelectorAll(".logout").forEach(el => {    //logout functionality
     el.addEventListener("click", () => {
@@ -11,6 +27,8 @@ document.querySelectorAll(".logout").forEach(el => {    //logout functionality
         window.location.replace("../../index.html")
     })
 })
+
+let facilities = []
 
 fetchFacilities(localStorage.getItem("userID")).then(() => {  //fetches user's facilities when the site loads
     if (facilities.length > 0) {    //checks if there are any facilities and removes the after element if so
@@ -26,6 +44,7 @@ async function fetchFacilities(userID) {    //fetches facilities that belong to 
     )
     const queryResult = await getDocs(facilitiesQuery)  //gets coresponding docs
     queryResult.forEach(doc => {
+        facilities.push(doc)
         addFacilityCard(doc)//adds docs to the html
     })
 }
@@ -43,7 +62,7 @@ function generateFacilityCard(facility) {   //generates a html element with all 
                 <p class="name">${facility.data().name}</p>
             </div>
             <div class="col-4">
-                <p class="address">${facility.data().address}</p>
+                <p class="address">${facility.data().city}, ${facility.data().address1}</p>
             </div>
             <div class="col-2 revenue">
                 <p class="revenue">${facility.data().revenue}€</p>
@@ -68,7 +87,7 @@ function generateFacilityCard(facility) {   //generates a html element with all 
 }
 
 function addFacilityCard(facility) {    //adds the generated cards to the site and adds event listeners where needed
-    facilityList.innerHTML += generateFacilityCard(facility)    //adds the card to the facilities list on screen
+    facilityList.insertAdjacentHTML("beforeend", generateFacilityCard(facility))
     document.querySelector(`#edit-${facility.id}`).addEventListener("click", () => {
         editFacility(facility)  //editing the specific facility
     })
@@ -90,47 +109,77 @@ function deleteFacility(id) {   //facility deletion
 function editFacility(facility) {   //facility edit
     document.querySelector("#hidden").click()   //opening of the modal
     //needed DOM elements
-    const facName = document.querySelector("#editFacName")
-    const facType = document.querySelector("#editType")
-    const facCity = document.querySelector("#editFacCity")
-    const facAdd1 = document.querySelector("#editFacAdd1")
-    const facAdd2 = document.querySelector("#editFacAdd2")
+    const e_facName = document.querySelector("#editFacName")
+    const e_facType = document.querySelector("#editType")
+    const e_facCity = document.querySelector("#editFacCity")
+    const e_facAdd1 = document.querySelector("#editFacAdd1")
+    const e_facAdd2 = document.querySelector("#editFacAdd2")
 
     document.querySelector("#btnRevert").addEventListener("click", () => {  //reverts data to the default (unchanged) state
-        facName.value = facility.data().name
-        facType.value = facility.data().type
-        facCity.value = facility.data().city
-        facAdd1.value = facility.data().address1
-        facAdd2.value = facility.data().address2
+        e_facName.value = facility.data().name
+        e_facType.value = facility.data().type
+        e_facCity.value = facility.data().city
+        e_facAdd1.value = facility.data().address1
+        e_facAdd2.value = facility.data().address2
     })
     document.querySelector("#btnRevert").click()    //lodaing data
     document.querySelector("#facName").innerHTML = facility.data().name //facility name at the top
     //attepting to save the data and update the facility doc
     document.querySelector("#btnSave").addEventListener("click", () => {
         switch (true) { //checks if the entred data is valid
-            case (facName.value.trim().length < 1): //no name
-
+            case (e_facName.value.trim().length < 1): //no name
+                alert("Enter facility name")
                 break
-            case (facCity.value.trim().length < 1): //no city
+            case (e_facCity.value.trim().length < 1): //no city
+                alert("Alert city/town")
                 break
-            case (facAdd1.value.trim().length < 1): //no address
-
+            case (e_facAdd1.value.trim().length < 1): //no address
+                alert("Enter address")
                 break
             default:    //data is valid
                 const facilityObject = {    //object used to update the doc
-                    name: facName.value.trim(),
-                    type: facType.value,
-                    city: facCity.value.trim(),
-                    address1: facAdd1.value.trim(),
-                    address2: facAdd2.value.trim() ?? "",
+                    name: e_facName.value.trim(),
+                    type: e_facType.value,
+                    city: e_facCity.value.trim(),
+                    address1: e_facAdd1.value.trim(),
+                    address2: e_facAdd2.value.trim() ?? "",
                     revenue: facility.data().revenue,
                     owner: facility.data().owner
                 }
+                const facilityDocRef = doc(db, "facilities", facility.id)    //document reference to the current facility+
+
+                updateDoc(facilityDocRef, facilityObject).then(() => {    //updating the doc
+                    window.location.reload()
+                }).catch(() => alert("Error updating information, try again or refresh the page."))
         }
     })
 }
+
+function addNewFacility() { //adds a new facility to the collection
+    switch (true) { //checks if the entred data is valid
+        case (facName.value.trim().length < 1): //no name
+            alert("Enter facility name")
+            break
+        case (facCity.value.trim().length < 1): //no city
+            alert("Alert city/town")
+            break
+        case (facAdd1.value.trim().length < 1): //no address
+            alert("Enter address")
+            break
+        default:
+            const newFacility = doc(facilitiesCollection)   //new doc
+            const facilityObject = {    //object with the needed data
+                name: facName.value.trim(),
+                type: facType.value,
+                city: facCity.value.trim(),
+                address1: facAdd1.value.trim(),
+                address2: facAdd2.value.trim() ?? "",
+                revenue: 0, //default
+                owner: localStorage.getItem("userID")
+            }
+            setDoc(newFacility, facilityObject).then(() => window.location.reload())
+                .catch(() => { alert("Error adding facility, try again or refresh the page.") })
+    }
+}
 // TODO:
-// -finish facility edit
-// -adding facilities
 // -responsive
-// -delete users's facilities when user is deleted

@@ -231,7 +231,7 @@ span.building {
 }
 
 .list::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 10%, rgba(82, 82, 82, 1) 10%, rgba(82, 82, 82, 1) 50%, rgba(82, 82, 82, 1) 90%, rgba(255, 255, 255, 0) 90%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 7%, rgba(82, 82, 82, 1) 7%, rgba(82, 82, 82, 1) 50%, rgba(82, 82, 82, 1) 92%, rgba(255, 255, 255, 0) 92%);
     border-radius: 5px;
 }
 
