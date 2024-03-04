@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/bootstrap-5.3.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/overview.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>Facilities Overview</title>
+</head>
+
+<body>
+    <header class="container">
+        <div class="maxw">
+            <img src="./assets/img/logo_white.svg" alt="Facility Managment logo" class="logo">
+            <nav>
+                <div class="desktop-menu d-none d-md-flex d-lg-flex d-xl-flex">
+                    <div class="user d-flex">
+                        <a href="./index.html">Home</a>
+                        <a href="#">General Statistics</a>
+                        <div class="dropdown-center">
+                            <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                                <span class="material-symbols-outlined">
+                                    account_circle
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <h6 class="dropdown-header">Account</h6>
+                                </li>
+                                <li><a class="dropdown-item" href="./account.html">Manage</a></li>
+                                <li><a class="dropdown-item logout" href="#">Log out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-menu d-sm-flex d-md-none">
+                    <div class="user d-flex">
+                        <a data-bs-toggle="offcanvas" href="#mobileUserMenu">
+                            <span class="material-symbols-outlined" id="menu">
+                                menu
+                            </span>
+                        </a>
+                        <a data-bs-toggle="offcanvas" href="#mobileAccountMenu">
+                            <span class="material-symbols-outlined">
+                                account_circle
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileUserMenu">
+            <div class="offcanvas-body">
+                <a href="./index.html">Home</a>
+                <a href="#">General Statistics</a>
+            </div>
+        </div>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileAccountMenu">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Account</h5>
+            </div>
+            <div class="offcanvas-body">
+                <a href="./account.html">Manage</a>
+                <a href="#" class="logout">Log out</a>
+            </div>
+        </div>
+    </header>
+    <section class="container">
+        <div class="maxw row">
+            <div class="col-12 btn-parent">
+                <button id="btnAddNew" data-bs-toggle="modal" data-bs-target="#addNewModal">ADD NEW FACILITY</button>
+            </div>
+            <div class="title col-12 d-flex justify-content-end">
+                <div class="d-flex align-items-end">
+                    <h2>Facility Overview</h2>
+                    <span class="material-symbols-outlined building">
+                        apartment
+                    </span>
+                </div>
+            </div>
+            <div class="col-12 list-parent">
+                <h3>All facilities</h3>
+                <div class="list d-flex flex-column" id="facilityList">
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <div class="modal" tabindex="-1" id="addNewModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">New Facility</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="facility-form">
+                        <div class="left">
+                            <div class="name">
+                                <h3>Facility Name<sup>*</sup></h3>
+                                <input type="text" placeholder="Enter Facility Name" id="inputFacName">
+                            </div>
+                            <div class="type">
+                                <h3>Facility Type</h3>
+                                <select class="form-select" id="selectType">
+                                    <option selected value="1">Apartment</option>
+                                    <option value="2">House</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="right">
+                            <h3>Location</h3>
+                            <div class="location d-flex flex-column">
+                                <div class="city">
+                                    <h4>City/Town<sup>*</sup></h4>
+                                    <input type="text" id="inputFacCity" placeholder="ex. Split">
+                                </div>
+                                <div class="address">
+                                    <h4>Addres Line 1<sup>*</sup></h4>
+                                    <input type="text" id="inputFacAdd1" placeholder="ex. Doverska 3">
+                                </div>
+                                <div class="address">
+                                    <h4>Address Line 2</h4>
+                                    <input type="text" id="inputFacAdd2" placeholder="Additional info">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer position-relative">
+                    <button class="modal-btn clear" id="btnClear"><span class="material-symbols-outlined">
+                            clear_all
+                        </span>Clear
+                    </button>
+                    <button class="modal-btn confirm position-absolute" id="btnAdd">Add facility</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" id="editModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="facName">Facility Name</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="facility-form">
+                        <div class="left">
+                            <div class="name">
+                                <h3>Facility Name<sup>*</sup></h3>
+                                <input type="text" placeholder="Enter Facility Name" id="editFacName">
+                            </div>
+                            <div class="type">
+                                <h3>Facility Type</h3>
+                                <select class="form-select" id="editType">
+                                    <option selected value="1">Apartment</option>
+                                    <option value="2">House</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="right">
+                            <h3>Location</h3>
+                            <div class="location d-flex flex-column">
+                                <div class="city">
+                                    <h4>City/Town<sup>*</sup></h4>
+                                    <input type="text" id="editFacCity" placeholder="ex. Split">
+                                </div>
+                                <div class="address">
+                                    <h4>Addres Line 1<sup>*</sup></h4>
+                                    <input type="text" id="editFacAdd1" placeholder="ex. Doverska 3">
+                                </div>
+                                <div class="address">
+                                    <h4>Address Line 2</h4>
+                                    <input type="text" id="editFacAdd2" placeholder="Additional info">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer position-relative">
+                    <button class="modal-btn clear" id="btnRevert"><span class="material-symbols-outlined">
+                            clear_all
+                        </span>Revert
+                    </button>
+                    <button class="modal-btn confirm position-absolute" id="btnSave">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id="hidden" data-bs-toggle="modal" data-bs-target="#editModal"></button>
+    <script src="./assets/css/bootstrap-5.3.2-dist/js/bootstrap.bundle.js"></script>
+    <script type="module" src="./assets/js/overview.js"></script>
+</body>
+
+</html>

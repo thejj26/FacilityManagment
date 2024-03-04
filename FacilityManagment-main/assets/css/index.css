@@ -1,0 +1,251 @@
+* {
+    color: #fff;
+    scroll-behavior: smooth;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.btn {
+    width: fit-content;
+    height: fit-content;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}
+
+.landing {
+    position: relative;
+    height: 100vh;
+    background-image: url("../img/skyscrapers_background.jpeg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+
+    header>div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 12px;
+    }
+}
+
+.scroll-down {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, -32px);
+    cursor: pointer;
+    background-image: url("../img/scrolldown.gif");
+    width: 52px;
+    height: 32px;
+    background-position: 50%;
+    background-size: 800%;
+}
+
+.no-user {
+    gap: 14px
+}
+
+.desktop-menu {
+    .no-user a {
+        color: #fff;
+        border-radius: 32px;
+        border: 1px solid #FFF;
+        padding: 4px 16px;
+        font-size: 16px;
+    }
+
+    .no-user a:hover {
+        background: #0D88F9;
+        border-color: transparent;
+        transition: .2s ease-out;
+    }
+
+}
+
+.mobile-menu {
+    .no-user a {
+        color: #fff;
+
+        span {
+            font-size: 40px;
+        }
+    }
+}
+
+.desktop-menu,
+.mobile-menu {
+    .user {
+        gap: 16px;
+
+        >a,
+        span {
+            color: #fff;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        a {
+            border-radius: 32px;
+            border: 1px solid #FFF;
+            padding: 4px 16px;
+            height: fit-content;
+            margin: auto 0;
+            text-align: center;
+            transition: .2s ease-out;
+        }
+
+        a:hover {
+            background: #0D88F9;
+            border-color: transparent;
+        }
+
+        a:has(span) {
+            border: none;
+            padding: 0 !important;
+        }
+
+        a:has(span):hover {
+            background: none;
+        }
+
+        span {
+            font-size: 42px;
+            transform: translateY(2px);
+            position: relative;
+        }
+
+        span::after {
+            content: "";
+            width: 30px;
+            height: 30px;
+            background-color: #0D88F9;
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translate(-6px, 6px);
+            z-index: -1;
+            border-radius: 100%;
+            opacity: 0;
+        }
+
+        span:hover::after {
+            transition: .2s ease-out;
+            opacity: 1;
+        }
+
+    }
+}
+
+.offcanvas {
+    width: 200px !important;
+    background-color: #0000007a;
+    backdrop-filter: blur(2px);
+    transition: transform 0.2s ease-in-out;
+}
+
+.offcanvas-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+
+    a {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 600;
+        border: 1px solid #fff;
+        border-radius: 32px;
+        padding: 4px 16px;
+        width: 110px;
+        box-sizing: border-box;
+        text-align: center;
+        transition: .2s ease-out;
+    }
+
+    a:hover {
+        background: #0D88F9;
+        border-color: transparent;
+    }
+}
+
+.offcanvas-title {
+    color: #fff;
+    font-size: 24px;
+}
+
+.dropdown-menu {
+    border: none;
+    box-shadow: 0px 8px 12px 0px rgba(0,0,0,0.75);
+}
+
+.dropdown-menu a {
+    border: none !important;
+    border-radius: unset !important;
+}
+
+.dropdown-menu a:hover {
+    background: #a7a7a741 !important;
+}
+
+.dropdown-menu h6 {
+    text-align: center;
+    font-size: 16px;
+}
+
+.intro-content {
+    margin-top: 200px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h3 {
+        font-size: 72px;
+        position: relative;
+        padding: 0 32px;
+    }
+
+    button {
+        margin-top: 168px;
+        background: transparent;
+        border: 3px solid #fff;
+        border-radius: 6px;
+        font-size: 40px;
+        width: 377px;
+        height: 67px;
+        transition: 0.2s ease-in-out;
+    }
+
+    button:hover {
+        background-color: #0D88F9;
+        border-color: transparent;
+    }
+}
+
+.second {
+    height: 100vh;
+}
+
+@media only screen and (max-width:1200px) {
+   .intro-content h3{
+    padding: 0;
+    font-size: 64px;
+   }
+}
+
+@media only screen and (max-width:992px) {
+    .intro-content h3{
+        font-size: 52px;
+       }
+}
+
+@media only screen and (max-width:768px) {
+    .scroll-down{
+        display: none;
+    }
+}
