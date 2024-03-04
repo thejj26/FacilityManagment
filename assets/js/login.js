@@ -24,7 +24,7 @@ async function attemptLogin() {
     if (userData == null) credentialsAlert.style.display = "block"    //no user is found, alert shows
     else {   //user is found
         localStorage.setItem("userID", userData.id)
-        if (!!sessionStorage.getItem("getStartedCached")) window.location = "../../facilities.html"   //if user clicked on get started
+        if (!!sessionStorage.getItem("getStartedCached")) window.location = "../../overview.html"   //if user clicked on get started
                     else window.location = "../../index.html"
     }
 }

@@ -18,7 +18,7 @@ document.querySelector("#btnClear").addEventListener("click", () => {  //reverts
     facAdd1.value = ""
     facAdd2.value = ""
 })
-
+sessionStorage.removeItem("getStartedCached")
 document.querySelector("#btnAdd").addEventListener("click", addNewFacility)
 
 document.querySelectorAll(".logout").forEach(el => {    //logout functionality

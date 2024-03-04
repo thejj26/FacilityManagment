@@ -63,7 +63,7 @@ async function attemptRegister() {  //attempts to register the user
                 const queryResult = await getDocs(currentUserQuery)
                 queryResult.forEach(doc => {
                     localStorage.setItem("userID", doc.id)
-                    if (!!sessionStorage.getItem("getStartedCached")) window.location = "../../facilities.html"   //if user clicked on get started
+                    if (!!sessionStorage.getItem("getStartedCached")) window.location = "../../overview.html"   //if user clicked on get started
                     else window.location = "../../index.html"
                 })
             }).catch((error) => {   //error handling

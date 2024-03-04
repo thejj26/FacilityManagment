@@ -117,6 +117,7 @@ async function attemptSave(userData) {
     inputNewPassword.value = ""
     inputConfirmNewPassword.value = ""
     console.log(valiadationResult)
+    
     if (valiadationResult != 0) {
         switch (valiadationResult) {
             case 1: //no username

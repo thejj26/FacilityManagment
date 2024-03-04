@@ -22,7 +22,7 @@ document.querySelectorAll(".logout").forEach(el => {  //log out buttons
 })
 
 btnGetStarted.addEventListener("click", () => {
-    if (!!localStorage.getItem("userID")) window.location = "../../facilities.html"   //if user is logged in
+    if (!!localStorage.getItem("userID")) window.location = "../../overview.html"   //if user is logged in
     else {
         window.location = "../../login.html"
         sessionStorage.setItem("getStartedCached", "true")
