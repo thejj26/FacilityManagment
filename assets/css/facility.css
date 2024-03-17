@@ -1,0 +1,209 @@
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+header {
+    background-color: #122638;
+    width: 100%;
+}
+
+header .maxw {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    height: 72px;
+}
+
+.dropdown-toggle {
+    padding: 0;
+}
+
+.desktop-menu,
+.mobile-menu {
+    .user {
+        gap: 16px;
+
+        >a,
+        span {
+            color: #fff;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        a {
+            border-radius: 32px;
+            border: 1px solid #FFF;
+            padding: 4px 16px;
+            height: fit-content;
+            margin: auto 0;
+            text-align: center;
+            transition: .2s ease-out;
+        }
+
+        a:hover {
+            background: #0D88F9;
+            border-color: transparent;
+        }
+
+        a:has(span) {
+            border: none;
+            padding: 0 !important;
+        }
+
+        a:has(span):hover {
+            background: none;
+        }
+
+        span {
+            font-size: 42px;
+            transform: translateY(2px);
+            position: relative;
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 100,
+                'GRAD' 0,
+                'opsz' 24;
+        }
+
+        span::after {
+            content: "";
+            width: 30px;
+            height: 30px;
+            background-color: #0D88F9;
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translate(-6px, 6px);
+            z-index: -1;
+            border-radius: 100%;
+            opacity: 0;
+        }
+
+        span:hover::after {
+            transition: .2s ease-out;
+            opacity: 1;
+        }
+
+        #menu::after {
+            display: none !important;
+        }
+
+    }
+}
+
+.offcanvas {
+    width: 200px !important;
+    background-color: #0000007a;
+    backdrop-filter: blur(2px);
+    transition: transform 0.2s ease-in-out;
+}
+
+.offcanvas-title {
+    font-size: 24px;
+    color: #fff;
+}
+
+.offcanvas-header {
+    justify-content: center;
+}
+
+.offcanvas-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+
+    a {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 600;
+        border: 1px solid #fff;
+        border-radius: 24px;
+        padding: 4px 16px;
+        width: 120px;
+        box-sizing: border-box;
+        text-align: center;
+        transition: .2s ease-out;
+    }
+
+    a:hover {
+        background: #0D88F9;
+        border-color: transparent;
+    }
+}
+
+.dropdown-menu {
+    border: none;
+    box-shadow: 0px 8px 12px 0px rgba(0, 0, 0, 0.75);
+}
+
+.dropdown-menu a {
+    border: none !important;
+    border-radius: unset !important;
+}
+
+.dropdown-menu a:hover {
+    background: #a7a7a741 !important;
+}
+
+.dropdown-menu h6 {
+    text-align: center;
+    font-size: 16px;
+}
+
+.fac-name{
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 24px;
+    margin-top: 8px;
+}
+.fac-location{
+    margin-bottom: 16px;
+}
+
+.fac-location, .fac-type, .fac-revenue{
+    font-size: 24px;
+}
+
+.fac-revenue{
+    text-align: right;
+}
+
+.fac-revenue span{
+    font-weight: bold;
+}
+
+.graphs {
+    margin-top: 80px;
+}
+
+.graph-parent p{
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.graph-toggle{
+    gap: 64px;
+}
+
+.graph-toggle a{
+    color: #4a4a4a;
+    text-decoration: none;
+}
+
+.graph-toggle a span{
+    font-size: 32px;
+    position: relative;
+    transition: .2s ease-out;
+}
+
+.graph-toggle a span:hover{
+    color: #436b8f;
+}
+
+.graph-toggle a.active span{
+    color: #0D88F9;
+    transition: .2s ease-out;
+}

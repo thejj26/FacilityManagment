@@ -52,7 +52,7 @@ async function fetchFacilities(userID) {    //fetches facilities that belong to 
 function generateFacilityCard(facility) {   //generates a html element with all the needed info from the facility
     return `
    <div class="facility row">
-        <div class="info row col-11">
+        <div class="info row col-11" id="fac-${facility.id}">
             <div class="col-2 icon">
                 <span class="material-symbols-outlined">
                     home
@@ -93,6 +93,9 @@ function addFacilityCard(facility) {    //adds the generated cards to the site a
     })
     document.querySelector(`#delete-${facility.id}`).addEventListener("click", () => {
         deleteFacility(facility.id) //deleting the specific facility
+    })
+    document.querySelector(`#fac-${facility.id}`).addEventListener("click", () => {
+        window.location=`../../facility.html#${facility.id}`    //redirecting the user on click
     })
 }
 
