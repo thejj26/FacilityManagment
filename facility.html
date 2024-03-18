@@ -1,114 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/bootstrap-5.3.2-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="./assets/css/main.css">
-    <link rel="stylesheet" href="./assets/css/facility.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="./assets/css/bootstrap-5.3.2-dist/css/bootstrap.css"
+    />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/facility.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
     <title>Facilities Overview</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="container">
-        <div class="maxw">
-            <img src="./assets/img/logo_white.svg" alt="Facility Managment logo" class="logo">
-            <nav>
-                <div class="desktop-menu d-none d-md-flex d-lg-flex d-xl-flex">
-                    <div class="user d-flex">
-                        <a href="./index.html">Home</a>
-                        <div class="dropdown-center">
-                            <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                                <span class="material-symbols-outlined">
-                                    account_circle
-                                </span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <h6 class="dropdown-header">Account</h6>
-                                </li>
-                                <li><a class="dropdown-item" href="./account.html">Manage</a></li>
-                                <li><a class="dropdown-item logout" href="#">Log out</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="mobile-menu d-sm-flex d-md-none">
-                    <div class="user d-flex">
-                        <a data-bs-toggle="offcanvas" href="#mobileUserMenu">
-                            <span class="material-symbols-outlined" id="menu">
-                                menu
-                            </span>
-                        </a>
-                        <a data-bs-toggle="offcanvas" href="#mobileAccountMenu">
-                            <span class="material-symbols-outlined">
-                                account_circle
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileUserMenu">
-            <div class="offcanvas-body">
-                <a href="./index.html">Home</a>
+      <div class="maxw">
+        <img
+          src="./assets/img/logo_white.svg"
+          alt="Facility Managment logo"
+          class="logo"
+        />
+        <nav>
+          <div class="desktop-menu d-none d-md-flex d-lg-flex d-xl-flex">
+            <div class="user d-flex">
+              <a href="./index.html">Home</a>
+              <div class="dropdown-center">
+                <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                  <span class="material-symbols-outlined">
+                    account_circle
+                  </span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <h6 class="dropdown-header">Account</h6>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="./account.html">Manage</a>
+                  </li>
+                  <li><a class="dropdown-item logout" href="#">Log out</a></li>
+                </ul>
+              </div>
             </div>
-        </div>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileAccountMenu">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title">Account</h5>
+          </div>
+          <div class="mobile-menu d-sm-flex d-md-none">
+            <div class="user d-flex">
+              <a data-bs-toggle="offcanvas" href="#mobileUserMenu">
+                <span class="material-symbols-outlined" id="menu"> menu </span>
+              </a>
+              <a data-bs-toggle="offcanvas" href="#mobileAccountMenu">
+                <span class="material-symbols-outlined"> account_circle </span>
+              </a>
             </div>
-            <div class="offcanvas-body">
-                <a href="./account.html">Manage</a>
-                <a href="#" class="logout">Log out</a>
-            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileUserMenu">
+        <div class="offcanvas-body">
+          <a href="./index.html">Home</a>
         </div>
+      </div>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileAccountMenu">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title">Account</h5>
+        </div>
+        <div class="offcanvas-body">
+          <a href="./account.html">Manage</a>
+          <a href="#" class="logout">Log out</a>
+        </div>
+      </div>
     </header>
     <section class="container">
-        <div class="general-info maxw">
-            <div class="row">
-                <div class="col-12 fac-name" id="facName">name</div>
-                <div class="col-12 fac-location" id="facLocation">city, address</div>
-                <div class="col-6 fac-type" id="facType">type</div>
-                <div class="col-6 fac-revenue" id="facRevenue">Last month's revnue: <span>1234€</span></div>
-            </div>
+      <div class="general-info maxw">
+        <div class="row">
+          <div class="col-12 fac-name" id="facName">name</div>
+          <div class="col-12 fac-location" id="facLocation">city, address</div>
+          <div class="col-6 fac-type" id="facType">type</div>
+          <div class="col-6 fac-revenue" id="facRevenue">
+            Last month's revnue: <span>1234€</span>
+          </div>
         </div>
+      </div>
     </section>
     <section class="container graphs">
-        <div class="maxw d-flex flex-column justify-content-center align-items-center graph-parent">
-            <p>View Statistics</p>
-            <div class="graph-toggle d-flex">
-                <a href="#pieGraph" class="graph-btn" data-bs-toggle="collapse" role="button" aria-expanded="false"
-                    aria-controls="pieGraph">
-                    <span class="material-symbols-outlined">
-                        pie_chart
-                    </span>
-                </a>
-                <a href="#lineGraph" class="graph-btn" data-bs-toggle="collapse" role="button" aria-expanded="false"
-                    aria-controls="lineGraph">
-                    <span class="material-symbols-outlined">
-                        stacked_line_chart
-                    </span>
-                </a>
-            </div>
-            <!--TODO be able to show only one graph at a time-->
-            <div class="collapse pie-graph" id="pieGraph">
-                <div class="card card-body">
-                    pie
-                </div>
-            </div>
-            <div class="collapse line-graph" id="lineGraph">
-                <div class="card card-body">
-                    line
-                </div>
-            </div>
+      <div class="maxw graph-parent">
+        <p>View Statistics</p>
+        <div
+          class="graph-toggle d-flex justify-content-center align-items-center"
+        >
+          <a
+            href="#pieGraph"
+            class="graph-btn"
+            data-bs-toggle="collapse"
+            role="button"
+            aria-expanded="false"
+            aria-controls="pieGraph"
+          >
+            <span class="material-symbols-outlined"> donut_large </span>
+          </a>
+          <a
+            href="#lineGraph"
+            class="graph-btn"
+            data-bs-toggle="collapse"
+            role="button"
+            aria-expanded="false"
+            aria-controls="lineGraph"
+          >
+            <span class="material-symbols-outlined"> stacked_line_chart </span>
+          </a>
         </div>
+        <!--TODO be able to show only one graph at a time-->
+        <div class="collapse pie-graph" id="pieGraph">
+          <div class="card card-body">
+            <canvas id="pieCanvas"></canvas>
+          </div>
+        </div>
+        <div class="collapse line-graph" id="lineGraph">
+          <div class="card card-body">
+            <canvas id="lineCanvas"></canvas>
+          </div>
+        </div>
+      </div>
     </section>
     <script src="./assets/css/bootstrap-5.3.2-dist/js/bootstrap.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
     <script type="module" src="./assets/js/facility.js"></script>
-</body>
-
+  </body>
 </html>
