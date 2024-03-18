@@ -11,7 +11,7 @@ const facCity = document.querySelector("#inputFacCity")
 const facAdd1 = document.querySelector("#inputFacAdd1")
 const facAdd2 = document.querySelector("#inputFacAdd2")
 
-let revenue;
+let revenue=0
 
 document.querySelector("#btnClear").addEventListener("click", () => {  //reverts data to the default (unchanged) state
     facName.value = ""
