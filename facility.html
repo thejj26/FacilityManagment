@@ -1,132 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="./assets/css/bootstrap-5.3.2-dist/css/bootstrap.css"
-    />
-    <link rel="stylesheet" href="./assets/css/main.css" />
-    <link rel="stylesheet" href="./assets/css/facility.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
-    <title>Facilities Overview</title>
-  </head>
 
-  <body>
-    <header class="container">
-      <div class="maxw">
-        <img
-          src="./assets/img/logo_white.svg"
-          alt="Facility Managment logo"
-          class="logo"
-        />
-        <nav>
-          <div class="desktop-menu d-none d-md-flex d-lg-flex d-xl-flex">
-            <div class="user d-flex">
-              <a href="./index.html">Home</a>
-              <div class="dropdown-center">
-                <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                  <span class="material-symbols-outlined">
-                    account_circle
-                  </span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li>
-                    <h6 class="dropdown-header">Account</h6>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="./account.html">Manage</a>
-                  </li>
-                  <li><a class="dropdown-item logout" href="#">Log out</a></li>
-                </ul>
-              </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./assets/css/bootstrap-5.3.2-dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="./assets/css/main.css" />
+  <link rel="stylesheet" href="./assets/css/facility.css" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <title>Facilities Overview</title>
+</head>
+
+<body>
+  <header class="container">
+    <div class="maxw">
+      <img src="./assets/img/logo_white.svg" alt="Facility Managment logo" class="logo" />
+      <nav>
+        <div class="desktop-menu d-none d-md-flex d-lg-flex d-xl-flex">
+          <div class="user d-flex">
+            <a href="./index.html">Home</a>
+            <div class="dropdown-center">
+              <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                <span class="material-symbols-outlined">
+                  account_circle
+                </span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <h6 class="dropdown-header">Account</h6>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="./account.html">Manage</a>
+                </li>
+                <li><a class="dropdown-item logout" href="#">Log out</a></li>
+              </ul>
             </div>
           </div>
-          <div class="mobile-menu d-sm-flex d-md-none">
-            <div class="user d-flex">
-              <a data-bs-toggle="offcanvas" href="#mobileUserMenu">
-                <span class="material-symbols-outlined" id="menu"> menu </span>
-              </a>
-              <a data-bs-toggle="offcanvas" href="#mobileAccountMenu">
-                <span class="material-symbols-outlined"> account_circle </span>
-              </a>
+        </div>
+        <div class="mobile-menu d-sm-flex d-md-none">
+          <div class="user d-flex">
+            <a data-bs-toggle="offcanvas" href="#mobileUserMenu">
+              <span class="material-symbols-outlined" id="menu"> menu </span>
+            </a>
+            <a data-bs-toggle="offcanvas" href="#mobileAccountMenu">
+              <span class="material-symbols-outlined"> account_circle </span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileUserMenu">
+      <div class="offcanvas-body">
+        <a href="./index.html">Home</a>
+      </div>
+    </div>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileAccountMenu">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Account</h5>
+      </div>
+      <div class="offcanvas-body">
+        <a href="./account.html">Manage</a>
+        <a href="#" class="logout">Log out</a>
+      </div>
+    </div>
+  </header>
+  <section class="container">
+    <div class="general-info maxw">
+      <div class="row">
+        <div class="col-12 fac-name" id="facName">name</div>
+        <div class="col-12 fac-location" id="facLocation">city, address</div>
+        <div class="col-6 fac-type" id="facType">type</div>
+        <div class="col-6 fac-revenue" id="facRevenue">
+          Last month's revnue: <span>1234€</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="container graphs">
+    <div class="maxw graph-parent">
+      <p>View Statistics</p>
+      <div class="graph-toggle d-flex justify-content-center align-items-center">
+        <a href="#pieGraph" class="graph-btn" data-bs-toggle="collapse" role="button" aria-expanded="false"
+          aria-controls="pieGraph">
+          <span class="material-symbols-outlined"> donut_large </span>
+        </a>
+        <a href="#lineGraph" class="graph-btn" data-bs-toggle="collapse" role="button" aria-expanded="false"
+          aria-controls="lineGraph">
+          <span class="material-symbols-outlined"> stacked_line_chart </span>
+        </a>
+      </div>
+      <!--TODO be able to show only one graph at a time-->
+      <div class="collapse pie-graph" id="pieGraph">
+        <div class="card card-body">
+          <canvas id="pieCanvas"></canvas>
+        </div>
+      </div>
+      <div class="collapse line-graph" id="lineGraph">
+        <div class="card card-body">
+          <canvas id="lineCanvas"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="financial container">
+    <div class="maxw d-flex">
+      <div class="col-6 expenses d-flex flex-column">
+        <h3>Expenses</h3>
+        <button class="btn-f" id="addExpense" data-bs-target="#expensesModal" data-bs-toggle="modal">ADD
+          EXPENSES</button>
+        <div id="expenses" class="list"></div>
+      </div>
+      <div class="col-6 earnings d-flex flex-column">
+        <h3>Earnings</h3>
+        <button class="btn-f" id="addEarning" data-bs-target="#earningsModal" data-bs-toggle="modal">ADD
+          EARNINGS</button>
+        <div id="earnings" class="list"></div>
+      </div>
+    </div>
+  </section>
+  <!--expenses modal-->
+  <div class="modal" tabindex="-1" id="expensesModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Report Expenses</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div>
+              <h4>Type</h4>
+              <select class="form-select" id="type_ex">
+                <option selected value="1">Monthly</option>
+                <option value="2">Discrete</option>
+                <option value="3">Ordinary</option>
+              </select>
             </div>
-          </div>
-        </nav>
-      </div>
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileUserMenu">
-        <div class="offcanvas-body">
-          <a href="./index.html">Home</a>
+            <div>
+              <h4>Date</h4>
+              <input type="date" id="date_ex">
+            </div>
+            <div>
+              <h4>Amount</h4>
+              <input type="number" placeholder="123.45" id="amount_ex"><span>€</span>
+            </div>
+            <div>
+              <h4>Description</h4>
+              <textarea id="description_ex" cols="40" rows="3"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer position-relative">
+          <button class="modal-btn clear" id="btnClear_ex"><span class="material-symbols-outlined">
+              clear_all
+            </span>Clear
+          </button>
+          <button class="modal-btn confirm position-absolute" id="btnAdd_ex">Add Expenses</button>
         </div>
       </div>
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileAccountMenu">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title">Account</h5>
+    </div>
+  </div>
+   <!--earnings modal-->
+   <div class="modal" tabindex="-1" id="earningsModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Report Earnings</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body">
-          <a href="./account.html">Manage</a>
-          <a href="#" class="logout">Log out</a>
+        <div class="modal-body">
+          <form>
+            <div>
+              <h4>Date</h4>
+              <input type="date" id="date_er">
+            </div>
+            <div>
+              <h4>Amount</h4>
+              <input type="number" placeholder="123.45" id="amount_er"><span>€</span>
+            </div>
+            <div>
+              <h4>Description</h4>
+              <textarea id="description_er" cols="40" rows="3"></textarea>
+            </div>
+          </form>
         </div>
-      </div>
-    </header>
-    <section class="container">
-      <div class="general-info maxw">
-        <div class="row">
-          <div class="col-12 fac-name" id="facName">name</div>
-          <div class="col-12 fac-location" id="facLocation">city, address</div>
-          <div class="col-6 fac-type" id="facType">type</div>
-          <div class="col-6 fac-revenue" id="facRevenue">
-            Last month's revnue: <span>1234€</span>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="container graphs">
-      <div class="maxw graph-parent">
-        <p>View Statistics</p>
-        <div
-          class="graph-toggle d-flex justify-content-center align-items-center"
-        >
-          <a
-            href="#pieGraph"
-            class="graph-btn"
-            data-bs-toggle="collapse"
-            role="button"
-            aria-expanded="false"
-            aria-controls="pieGraph"
-          >
-            <span class="material-symbols-outlined"> donut_large </span>
-          </a>
-          <a
-            href="#lineGraph"
-            class="graph-btn"
-            data-bs-toggle="collapse"
-            role="button"
-            aria-expanded="false"
-            aria-controls="lineGraph"
-          >
-            <span class="material-symbols-outlined"> stacked_line_chart </span>
-          </a>
-        </div>
-        <!--TODO be able to show only one graph at a time-->
-        <div class="collapse pie-graph" id="pieGraph">
-          <div class="card card-body">
-            <canvas id="pieCanvas"></canvas>
-          </div>
-        </div>
-        <div class="collapse line-graph" id="lineGraph">
-          <div class="card card-body">
-            <canvas id="lineCanvas"></canvas>
-          </div>
+        <div class="modal-footer position-relative">
+          <button class="modal-btn clear" id="btnClear_er"><span class="material-symbols-outlined">
+              clear_all
+            </span>Clear
+          </button>
+          <button class="modal-btn confirm position-absolute" id="btnAdd_er">Add Expenses</button>
         </div>
       </div>
-    </section>
-    <script src="./assets/css/bootstrap-5.3.2-dist/js/bootstrap.bundle.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
-    <script type="module" src="./assets/js/facility.js"></script>
-  </body>
+    </div>
+  </div>
+  <script src="./assets/css/bootstrap-5.3.2-dist/js/bootstrap.bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+  <script type="module" src="./assets/js/facility.js"></script>
+</body>
+
 </html>

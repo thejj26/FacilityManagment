@@ -1,5 +1,5 @@
 import db from './firebase.mjs'
-import { collection, query, where, getDocs, doc, updateDoc, getDoc } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js'
+import { collection, doc, updateDoc, getDoc } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js'
 
 const facilitiesCollection = collection(db, "facilities")
 const facID = String(window.location).split("#")[1]
@@ -15,23 +15,49 @@ const facRevenue = document.querySelector("#facRevenue")
 const togglePie = document.querySelector('a[href="#pieGraph"]')
 const toggleLine = document.querySelector('a[href="#lineGraph"]')
 
+const ex_type=document.querySelector("#type_ex")
+const ex_date=document.querySelector("#date_ex")
+const ex_amount=document.querySelector("#amount_ex")
+const ex_desc=document.querySelector("#description_ex")
+const ex_btnClear=document.querySelector("#btnClear_ex")
+const ex_btnAdd=document.querySelector("#btnAdd_ex")
+
+const er_date=document.querySelector("#date_er")
+const er_amount=document.querySelector("#amount_er")
+const er_desc=document.querySelector("#description_er")
+const er_btnClear=document.querySelector("#btnClear_er")
+const er_btnAdd=document.querySelector("#btnAdd_er")
+
 togglePie.addEventListener("click", () => {
     if (!togglePie.classList.contains("active")) {
         togglePie.classList.add("active")
-        if(toggleLine.classList.contains("active")) toggleLine.click()
+        if (toggleLine.classList.contains("active")) toggleLine.click()
         toggleLine.classList.remove("active")
-    }else{
+    } else {
         togglePie.classList.remove("active")
     }
 })
 toggleLine.addEventListener("click", () => {
     if (!toggleLine.classList.contains("active")) {
         toggleLine.classList.add("active")
-        if(togglePie.classList.contains("active")) togglePie.click()
+        if (togglePie.classList.contains("active")) togglePie.click()
         togglePie.classList.remove("active")
-    }else{
+    } else {
         toggleLine.classList.remove("active")
     }
+})
+
+ex_btnClear.addEventListener("click", ()=>{
+    getDate()
+    ex_type.value=1
+    ex_amount.value=0
+    ex_desc.value=""
+})
+
+er_btnClear.addEventListener("click", ()=>{
+    getDate()
+    er_amount.value=0
+    er_desc.value=""
 })
 
 try {
@@ -44,6 +70,7 @@ try {
     alert('Error loading facility data')
 }
 
+getDate()
 loadPieChart()
 loadLineChart()
 
@@ -56,6 +83,17 @@ function determineFacilityType(num) {
             return "House"
             break
     }
+}
+
+function getDate() {
+    const today = new Date()
+
+    const year = today.getFullYear()
+    const month = String(today.getMonth() + 1).padStart(2, '0')
+    const day = String(today.getDate()).padStart(2, '0')
+    const formattedDate= `${year}-${month}-${day}`
+    ex_date.value=formattedDate
+    er_date.value=formattedDate
 }
 
 async function loadPieChart() {

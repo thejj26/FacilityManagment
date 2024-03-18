@@ -11,6 +11,8 @@ const facCity = document.querySelector("#inputFacCity")
 const facAdd1 = document.querySelector("#inputFacAdd1")
 const facAdd2 = document.querySelector("#inputFacAdd2")
 
+let revenue;
+
 document.querySelector("#btnClear").addEventListener("click", () => {  //reverts data to the default (unchanged) state
     facName.value = ""
     facType.value = 1
@@ -49,6 +51,10 @@ async function fetchFacilities(userID) {    //fetches facilities that belong to 
     })
 }
 
+function calculateRevenue(expenses, earnings){
+
+}
+
 function generateFacilityCard(facility) {   //generates a html element with all the needed info from the facility
     return `
    <div class="facility row">
@@ -65,7 +71,7 @@ function generateFacilityCard(facility) {   //generates a html element with all 
                 <p class="address">${facility.data().city}, ${facility.data().address1}</p>
             </div>
             <div class="col-2 revenue">
-                <p class="revenue">${facility.data().revenue}€</p>
+                <p class="revenue">${calculateRevenue(facility.data().expenses, facility.data().earnings)}€</p>
             </div>
         </div>
         <div class="manage d-flex flex-column col-1">
@@ -95,7 +101,7 @@ function addFacilityCard(facility) {    //adds the generated cards to the site a
         deleteFacility(facility.id) //deleting the specific facility
     })
     document.querySelector(`#fac-${facility.id}`).addEventListener("click", () => {
-        window.location=`../../facility.html#${facility.id}`    //redirecting the user on click
+        window.location = `../../facility.html#${facility.id}`    //redirecting the user on click
     })
 }
 
@@ -146,8 +152,10 @@ function editFacility(facility) {   //facility edit
                     city: e_facCity.value.trim(),
                     address1: e_facAdd1.value.trim(),
                     address2: e_facAdd2.value.trim() ?? "",
-                    revenue: facility.data().revenue,
-                    owner: facility.data().owner
+                    revenue: revenue,
+                    owner: facility.data().owner,
+                    expenses: facility.data().expenses,
+                    earnings: facility.data().earnings
                 }
                 const facilityDocRef = doc(db, "facilities", facility.id)    //document reference to the current facility+
 
@@ -178,7 +186,13 @@ function addNewFacility() { //adds a new facility to the collection
                 address1: facAdd1.value.trim(),
                 address2: facAdd2.value.trim() ?? "",
                 revenue: 0, //default
-                owner: localStorage.getItem("userID")
+                owner: localStorage.getItem("userID"),
+                expenses: { //troskovi
+                    "monthly": [], //mjesecni
+                    "discrete": [],    //vanredni
+                    "regular": []  //stalni (reguralni)
+                },
+                earnings: []
             }
             setDoc(newFacility, facilityObject).then(() => window.location.reload())
                 .catch(() => { alert("Error adding facility, try again or refresh the page.") })
