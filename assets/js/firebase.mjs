@@ -1,8 +1,6 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js';
-import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js';
-
-
-//app data for valiadating
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js'
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js'
+//data for valiadating
 const firebaseConfig = {
     apiKey: "AIzaSyD1ZFJ9o69xXoKiIVT_QyMavG7IN-D_3B4",
     authDomain: "facility-management-b1f0f.firebaseapp.com",
@@ -14,6 +12,5 @@ const firebaseConfig = {
 //initialization
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
-
 //exporting to other js files
 export default db
