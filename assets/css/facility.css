@@ -260,7 +260,7 @@ header .maxw {
 }
 
 .list::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 7%, rgba(82, 82, 82, 1) 7%, rgba(82, 82, 82, 1) 50%, rgba(82, 82, 82, 1) 92%, rgba(255, 255, 255, 0) 92%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 3%, rgba(82, 82, 82, 1) 3%, rgba(82, 82, 82, 1) 50%, rgba(82, 82, 82, 1) 97%, rgba(255, 255, 255, 0) 97%);
   border-radius: 5px;
 }
 
@@ -269,11 +269,60 @@ header .maxw {
   display: none;
 }
 
-textarea{
+textarea {
   resize: none;
 }
 
-.modal-btn.confirm{
+.modal-btn.confirm {
   left: 50%;
   transform: translateX(-50%);
+}
+
+.list{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: scroll;
+}
+
+.container-er,
+.container-ex {
+  border: 1px solid #525252;
+  border-radius: 12px;
+  padding: 0 24px;
+  min-height: 80px !important;
+  position: relative;
+  align-items: center;
+}
+
+.type{
+  position: absolute;
+  top: 2px;
+  left: 8px;
+  color: #0d88f9;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.amount{
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.container-er .amount{
+  color: #146914;
+}
+
+.container-ex .amount{
+  color:#7a1c1c;
+}
+
+.date{
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.description{
+  font-size: 16px;
+  line-height: 110%;
 }

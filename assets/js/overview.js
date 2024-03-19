@@ -11,8 +11,6 @@ const facCity = document.querySelector("#inputFacCity")
 const facAdd1 = document.querySelector("#inputFacAdd1")
 const facAdd2 = document.querySelector("#inputFacAdd2")
 
-let revenue=0
-
 document.querySelector("#btnClear").addEventListener("click", () => {  //reverts data to the default (unchanged) state
     facName.value = ""
     facType.value = 1
@@ -51,10 +49,6 @@ async function fetchFacilities(userID) {    //fetches facilities that belong to 
     })
 }
 
-function calculateRevenue(expenses, earnings){
-
-}
-
 function generateFacilityCard(facility) {   //generates a html element with all the needed info from the facility
     return `
    <div class="facility row">
@@ -71,7 +65,7 @@ function generateFacilityCard(facility) {   //generates a html element with all 
                 <p class="address">${facility.data().city}, ${facility.data().address1}</p>
             </div>
             <div class="col-2 revenue">
-                <p class="revenue">${calculateRevenue(facility.data().expenses, facility.data().earnings)}€</p>
+                <p class="revenue">${facility.data().revenue}€</p>
             </div>
         </div>
         <div class="manage d-flex flex-column col-1">

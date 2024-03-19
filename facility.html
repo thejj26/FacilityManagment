@@ -19,6 +19,7 @@
       <nav>
         <div class="desktop-menu d-none d-md-flex d-lg-flex d-xl-flex">
           <div class="user d-flex">
+            <a href="./overview.html">Facilities</a>
             <a href="./index.html">Home</a>
             <div class="dropdown-center">
               <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
@@ -52,6 +53,7 @@
     </div>
     <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileUserMenu">
       <div class="offcanvas-body">
+        <a href="./overview.html">Facilities</a>
         <a href="./index.html">Home</a>
       </div>
     </div>
@@ -115,8 +117,10 @@
         <h3>Earnings</h3>
         <button class="btn-f" id="addEarning" data-bs-target="#earningsModal" data-bs-toggle="modal">ADD
           EARNINGS</button>
-        <div id="earnings" class="list"></div>
+        <div id="earnings" class="list">
+        </div>
       </div>
+    </div>
     </div>
   </section>
   <!--expenses modal-->
@@ -134,7 +138,7 @@
               <select class="form-select" id="type_ex">
                 <option selected value="1">Monthly</option>
                 <option value="2">Discrete</option>
-                <option value="3">Ordinary</option>
+                <option value="3">Regular</option>
               </select>
             </div>
             <div>
@@ -147,7 +151,7 @@
             </div>
             <div>
               <h4>Description</h4>
-              <textarea id="description_ex" cols="40" rows="3"></textarea>
+              <textarea id="description_ex" cols="40" rows="3" maxlength="100"></textarea>
             </div>
           </form>
         </div>
@@ -161,8 +165,8 @@
       </div>
     </div>
   </div>
-   <!--earnings modal-->
-   <div class="modal" tabindex="-1" id="earningsModal">
+  <!--earnings modal-->
+  <div class="modal" tabindex="-1" id="earningsModal">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -181,7 +185,7 @@
             </div>
             <div>
               <h4>Description</h4>
-              <textarea id="description_er" cols="40" rows="3"></textarea>
+              <textarea id="description_er" cols="40" rows="3" maxlength="100"></textarea>
             </div>
           </form>
         </div>
@@ -190,7 +194,7 @@
               clear_all
             </span>Clear
           </button>
-          <button class="modal-btn confirm position-absolute" id="btnAdd_er">Add Expenses</button>
+          <button class="modal-btn confirm position-absolute" id="btnAdd_er">Add Earnings</button>
         </div>
       </div>
     </div>
