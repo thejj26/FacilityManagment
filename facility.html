@@ -94,16 +94,45 @@
       </div>
       <!--TODO be able to show only one graph at a time-->
       <div class="collapse pie-graph" id="pieGraph">
-        <div class="card card-body">
-          <canvas id="pieCanvas"></canvas>
+        <div class="card">
+          <div class="card-header">
+            <h4>Ratio of expense types</h4>
+          </div>
+          <div class="card-body">
+            <canvas id="pieCanvas1"></canvas>
+            <canvas id="pieCanvas2"></canvas>
+          </div>
+          <div class="card-footer">
+            <form onsubmit="return false;">
+              <div>
+                <input type="date" id="date1_pie">
+                <input type="date" id="date2_pie">
+              </div>
+              <button id="apply_pie">Apply</button>
+            </form>
+          </div>
         </div>
+
       </div>
       <div class="collapse line-graph" id="lineGraph">
-        <div class="card card-body">
-          <canvas id="lineCanvas"></canvas>
+        <div class="card">
+          <div class="card-header">
+            <h4>Review of expenses and earnings</h4>
+          </div>
+          <div class="card-body">
+            <canvas id="lineCanvas"></canvas>
+          </div>
+          <div class="card-footer">
+            <form onsubmit="return false;">
+              <div>
+                <input type="month" id="date1_line">
+                <input type="month" id="date2_line">
+              </div>
+              <button id="apply_line">Apply</button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
   </section>
   <section class="financial container">
     <div class="maxw d-flex">

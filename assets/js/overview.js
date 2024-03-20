@@ -146,7 +146,7 @@ function editFacility(facility) {   //facility edit
                     city: e_facCity.value.trim(),
                     address1: e_facAdd1.value.trim(),
                     address2: e_facAdd2.value.trim() ?? "",
-                    revenue: revenue,
+                    revenue: facility.data().revenue,
                     owner: facility.data().owner,
                     expenses: facility.data().expenses,
                     earnings: facility.data().earnings

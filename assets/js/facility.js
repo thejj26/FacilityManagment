@@ -31,6 +31,29 @@ const er_btnAdd = document.querySelector("#btnAdd_er")
 //list dom elements
 const list_ex = document.querySelector("#expenses")
 const list_er = document.querySelector("#earnings")
+//graph elements
+const c_pie1 = document.querySelector("#pieCanvas1")
+const c_pie2 = document.querySelector("#pieCanvas2")
+const c_line = document.querySelector("#lineCanvas")
+const date_pie = [document.querySelector("#date1_pie"), document.querySelector("#date2_pie")]
+const months_line = [document.querySelector("#date1_line"), document.querySelector("#date2_line")]
+const apply_pie = document.querySelector("#apply_pie")
+const apply_line = document.querySelector("#apply_line")
+const chartPie1 = new Chart(
+    c_pie1,
+    {
+        type: 'doughnut',
+        data: {}
+    }
+)
+const chartPie2 = new Chart(
+    c_pie2,
+    {
+        type: 'doughnut',
+        data: {}
+    }
+)
+
 //graph control
 //only allows one graph to be active at a time
 togglePie.addEventListener("click", () => {
@@ -67,6 +90,7 @@ er_btnClear.addEventListener("click", () => {
 //onclick listeners for adding earnings and expenses
 er_btnAdd.addEventListener("click", addEarnings)
 ex_btnAdd.addEventListener("click", addExpenses)
+apply_pie.addEventListener("click", loadPieCharts)
 //loading fac data into the dom
 try {
     facData.revenue = calculateRevenue(facData.expenses, facData.earnings)  //updates the revenue
@@ -76,7 +100,7 @@ try {
     facType.innerHTML = determineFacilityType(parseInt(facData.type))
     facRevenue.innerHTML = `Last month's revnue: <span>${facData.revenue}€</span>`
     loadEarnings()
-    loadExpenses() 
+    loadExpenses()
 } catch (e) {
     alert('Error loading facility data')
     console.error(e)
@@ -84,8 +108,8 @@ try {
 
 getDate()   //sets the current date in the date pickers
 //loads the graphs
-loadPieChart()
-loadLineChart()
+loadPieCharts()
+//loadLineChart()
 
 function determineFacilityType(num) {   //type (number) to a string
     switch (num) {
@@ -104,8 +128,19 @@ function getDate() {    //gets the current date and formats it
     const month = String(today.getMonth() + 1).padStart(2, '0')
     const day = String(today.getDate()).padStart(2, '0')
     const formattedDate = `${year}-${month}-${day}`
+
+    const today_old = new Date(new Date().getTime() - 8035200000) //approx 3 monhts ago
+    const year_old = today_old.getFullYear()
+    const month_old = String(today_old.getMonth() + 1).padStart(2, '0')
+    const formattedDate_month = `${year}-${month}`
+    const formattedDate_month_old = `${year_old}-${month_old}`
+
     ex_date.value = formattedDate   //applies the date to the date pickers
     er_date.value = formattedDate
+    date_pie[0].value = formattedDate
+    date_pie[1].value = formattedDate
+    months_line[0].value = formattedDate_month
+    months_line[1].value = formattedDate_month_old
 }
 
 function calculateRevenue(expenses, earnings) { //calculates the revenue
@@ -117,7 +152,7 @@ function calculateRevenue(expenses, earnings) { //calculates the revenue
     //sums up all the data
     const sum_er = earnings.reduce((sum, current) => sum + current.amount, 0)
     const sum_ex = expenses.reduce((sum, current) => sum + current.amount, 0)
-    return Math.round((sum_er - sum_ex)*100)/100    //calculates revenue
+    return Math.round((sum_er - sum_ex) * 100) / 100    //calculates revenue
 }
 
 function loadEarnings() {    //loads all of the earnings using dom
@@ -135,7 +170,7 @@ function loadEarnings() {    //loads all of the earnings using dom
 }
 
 function loadExpenses() {    //loads all of the expenses using dom
-    let _expenses = expenses = [].concat(expenses.monthly, expenses.discrete, expenses.regular)
+    let _expenses = [].concat(expenses.monthly, expenses.discrete, expenses.regular)
     _expenses.sort((a, b) => b.date - a.date)
     _expenses.forEach(ex => {
         const markup = `
@@ -170,7 +205,7 @@ function addEarnings() {    //adds a new earning
         }
         const er_object = { //object that stores the data
             "date": date,
-            "amount": Math.round(amount*100)/100,
+            "amount": Math.round(amount * 100) / 100,
             "description": desc
         }
         facData.earnings.push(er_object)    //appends the object to the other earnings, updates the facility data
@@ -201,7 +236,7 @@ function addExpenses() {    //adds a new expense
         }
         const ex_object = {
             "date": date,
-            "amount": Math.round(amount*100)/100,
+            "amount": Math.round(amount * 100) / 100,
             "description": desc,
             "type": type
         }
@@ -222,52 +257,78 @@ function addExpenses() {    //adds a new expense
     }
 }
 //loads the pie graph
-async function loadPieChart() {
-    const data = {
+async function loadPieCharts() {
+    const date_1 = new Date(date_pie[0].value).getTime()
+    const date_2 = new Date(date_pie[1].value).getTime()
+
+    const ex_monhtly = expenses.monthly.filter(x => (x.date <= date_1 && x.date >= date_2))
+    const ex_discrete = expenses.discrete.filter(x => (x.date <= date_1 && x.date >= date_2))
+    const ex_regular = expenses.regular.filter(x => (x.date <= date_1 && x.date >= date_2))
+    const er_all = earnings.filter(x => (x.date <= date_1 && x.date >= date_2))
+
+    const sum_monthly = ex_monhtly.reduce((sum, x) => sum + x.amount, 0)
+    const sum_discrete = ex_discrete.reduce((sum, x) => sum + x.amount, 0)
+    const sum_regular = ex_regular.reduce((sum, x) => sum + x.amount, 0)
+    const sum_expenses = sum_monthly + sum_discrete + sum_regular
+    const sum_earnings = er_all.reduce((sum, x) => sum + x.amount, 0)
+
+    const data_1 = {
         labels: [
-            'Red',
-            'Blue',
-            'Yellow'
+            'Monthly',
+            'Discrete',
+            'Regular'
         ],
         datasets: [{
             label: 'My First Dataset',
-            data: [300, 50, 100],
+            data: [sum_monthly, sum_discrete, sum_regular],
             backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
+                '#CD6155',
+                '#EB984E',
+                '#F4D03F'
             ],
             hoverOffset: 4
         }]
-    };
-
-    new Chart(
-        document.getElementById('pieCanvas'),
-        {
-            type: 'doughnut',
-            data: data
-        }
-    );
-}
-//loads the line graph
-async function loadLineChart() {
-    const labels = [1, 2, 3, 4, 5, 6, 7];
-    const data = {
-        labels: labels,
+    }
+    const data_2 = {
+        labels: [
+            'Expenses',
+            'Earnings'
+        ],
         datasets: [{
             label: 'My First Dataset',
-            data: [65, 59, 80, 81, 56, 55, 40],
-            fill: false,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1
+            data: [sum_expenses, sum_earnings],
+            backgroundColor: [
+                '#E53935',
+                '#239B56'
+            ],
+            hoverOffset: 4
         }]
-    };
+    }
 
-    new Chart(
-        document.getElementById('lineCanvas'),
-        {
-            type: 'line',
-            data: data
-        }
-    );
+    chartPie1.config.data = data_1
+    chartPie1.update()
+    chartPie2.config.data = data_2
+    chartPie2.update()
 }
+//loads the line graph
+// async function loadLineChart() {
+//     const labels = [1, 2, 3, 4, 5, 6, 7];
+//     const data = {
+//         labels: labels,
+//         datasets: [{
+//             label: 'My First Dataset',
+//             data: [65, 59, 80, 81, 56, 55, 40],
+//             fill: false,
+//             borderColor: 'rgb(75, 192, 192)',
+//             tension: 0.1
+//         }]
+//     };
+
+//     new Chart(
+//         document.getElementById('lineCanvas'),
+//         {
+//             type: 'line',
+//             data: data
+//         }
+//     );
+// }
