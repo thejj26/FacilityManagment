@@ -95,15 +95,14 @@
       <!--TODO be able to show only one graph at a time-->
       <div class="collapse pie-graph" id="pieGraph">
         <div class="card">
-          <div class="card-header">
-            <h4>Ratio of expense types</h4>
-          </div>
           <div class="card-body">
+            <h4>Ratio of expense types</h4>
             <canvas id="pieCanvas1"></canvas>
+            <h4>Ratio of expenses and earnings</h4>
             <canvas id="pieCanvas2"></canvas>
           </div>
           <div class="card-footer">
-            <form onsubmit="return false;">
+            <form onsubmit="return false;" class="d-flex flex-column align-items-center">
               <div>
                 <input type="date" id="date1_pie">
                 <input type="date" id="date2_pie">
@@ -116,14 +115,12 @@
       </div>
       <div class="collapse line-graph" id="lineGraph">
         <div class="card">
-          <div class="card-header">
-            <h4>Review of expenses and earnings</h4>
-          </div>
           <div class="card-body">
+            <h4>Review of monthly expenses and earnings</h4>
             <canvas id="lineCanvas"></canvas>
           </div>
           <div class="card-footer">
-            <form onsubmit="return false;">
+            <form onsubmit="return false;" class="d-flex flex-column align-items-center">
               <div>
                 <input type="month" id="date1_line">
                 <input type="month" id="date2_line">
@@ -170,11 +167,11 @@
                 <option value="3">Regular</option>
               </select>
             </div>
-            <div>
+            <div class="inline">
               <h4>Date</h4>
               <input type="date" id="date_ex">
             </div>
-            <div>
+            <div class="inline">
               <h4>Amount</h4>
               <input type="number" placeholder="123.45" id="amount_ex"><span>€</span>
             </div>

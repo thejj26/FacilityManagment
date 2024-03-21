@@ -53,6 +53,42 @@ const chartPie2 = new Chart(
         data: {}
     }
 )
+const chartLine = new Chart(
+    c_line,
+    {
+        type: 'bar', // Default type
+        data:
+        {
+            labels: [],
+            datasets: [
+                {
+                    label: 'Monthly Expenses',
+                    data: [],
+                    type: 'line',
+                    fill: false,
+                    borderColor: '#A30000',
+                    borderWidth: 1,
+                    tension: 0,
+                }, {
+                    label: 'Monthly Earnings',
+                    data: [],
+                    type: 'line',
+                    fill: false,
+                    borderColor: '#4CB140',
+                    borderWidth: 1,
+                    tension: 0
+                },
+                {
+                    label: 'Monthly Revenue',
+                    data: [],
+                    backgroundColor: '#519DE9',
+                    borderColor: '#519DE9',
+                    borderWidth: 1
+                }]
+        }
+
+    }
+)
 
 //graph control
 //only allows one graph to be active at a time
@@ -91,6 +127,7 @@ er_btnClear.addEventListener("click", () => {
 er_btnAdd.addEventListener("click", addEarnings)
 ex_btnAdd.addEventListener("click", addExpenses)
 apply_pie.addEventListener("click", loadPieCharts)
+apply_line.addEventListener("click", loadLineChart)
 //loading fac data into the dom
 try {
     facData.revenue = calculateRevenue(facData.expenses, facData.earnings)  //updates the revenue
@@ -109,7 +146,7 @@ try {
 getDate()   //sets the current date in the date pickers
 //loads the graphs
 loadPieCharts()
-//loadLineChart()
+loadLineChart()
 
 function determineFacilityType(num) {   //type (number) to a string
     switch (num) {
@@ -129,6 +166,14 @@ function getDate() {    //gets the current date and formats it
     const day = String(today.getDate()).padStart(2, '0')
     const formattedDate = `${year}-${month}-${day}`
 
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    const year_y = yesterday.getFullYear()
+    const month_y = String(yesterday.getMonth() + 1).padStart(2, '0')
+    const day_y = String(yesterday.getDate()).padStart(2, '0')
+    const formattedDate_y = `${year_y}-${month_y}-${day_y}`
+
     const today_old = new Date(new Date().getTime() - 8035200000) //approx 3 monhts ago
     const year_old = today_old.getFullYear()
     const month_old = String(today_old.getMonth() + 1).padStart(2, '0')
@@ -138,7 +183,7 @@ function getDate() {    //gets the current date and formats it
     ex_date.value = formattedDate   //applies the date to the date pickers
     er_date.value = formattedDate
     date_pie[0].value = formattedDate
-    date_pie[1].value = formattedDate
+    date_pie[1].value = formattedDate_y
     months_line[0].value = formattedDate_month
     months_line[1].value = formattedDate_month_old
 }
@@ -260,13 +305,21 @@ function addExpenses() {    //adds a new expense
 async function loadPieCharts() {
     const date_1 = new Date(date_pie[0].value).getTime()
     const date_2 = new Date(date_pie[1].value).getTime()
-
-    const ex_monhtly = expenses.monthly.filter(x => (x.date <= date_1 && x.date >= date_2))
+    const dateRange = date_1 - date_2
+    if (dateRange < 0) {
+        alert("Invalid date range")
+        return
+    }
+    if (date_1 > new Date() || date_2 > new Date()) {
+        alert("You selected a future date")
+        return
+    }
+    const ex_monthly = expenses.monthly.filter(x => (x.date <= date_1 && x.date >= date_2))
     const ex_discrete = expenses.discrete.filter(x => (x.date <= date_1 && x.date >= date_2))
     const ex_regular = expenses.regular.filter(x => (x.date <= date_1 && x.date >= date_2))
     const er_all = earnings.filter(x => (x.date <= date_1 && x.date >= date_2))
 
-    const sum_monthly = ex_monhtly.reduce((sum, x) => sum + x.amount, 0)
+    const sum_monthly = ex_monthly.reduce((sum, x) => sum + x.amount, 0)
     const sum_discrete = ex_discrete.reduce((sum, x) => sum + x.amount, 0)
     const sum_regular = ex_regular.reduce((sum, x) => sum + x.amount, 0)
     const sum_expenses = sum_monthly + sum_discrete + sum_regular
@@ -311,24 +364,87 @@ async function loadPieCharts() {
     chartPie2.update()
 }
 //loads the line graph
-// async function loadLineChart() {
-//     const labels = [1, 2, 3, 4, 5, 6, 7];
-//     const data = {
-//         labels: labels,
-//         datasets: [{
-//             label: 'My First Dataset',
-//             data: [65, 59, 80, 81, 56, 55, 40],
-//             fill: false,
-//             borderColor: 'rgb(75, 192, 192)',
-//             tension: 0.1
-//         }]
-//     };
+async function loadLineChart() {
+    let date_1 = new Date(months_line[0].value)
+    const date_2 = new Date(months_line[1].value)
+    const dateRange = date_1 - date_2
+    if (dateRange < 0) {
+        alert("Invalid date range")
+        return
+    }
+    if (monthsDifference(date_2, date_1) < 2 || monthsDifference(date_2, date_1) > 12) {
+        alert("The date range must be between 2 and 12 months")
+        return
+    }
+    if (date_1 > new Date() || date_2 > new Date()) {
+        alert("You selected a future date")
+        return
+    }
+    let months = []
 
-//     new Chart(
-//         document.getElementById('lineCanvas'),
-//         {
-//             type: 'line',
-//             data: data
-//         }
-//     );
-// }
+    while (date_1 >= date_2) {
+        const year = date_1.getFullYear()
+        const month = date_1.getMonth() + 1
+        months.push({ milis: date_1.getTime(), date: ('0' + month).slice(-2) + '/' + year })
+        date_1.setMonth(month - 2)
+    }
+    date_1 = new Date(months_line[0].value)
+    date_1.setMonth(date_1.getMonth() + 1)
+    date_1.setDate(0)
+
+    const ex_monthly = expenses.monthly.filter(x => (x.date <= date_1 && x.date >= date_2))
+    const ex_discrete = expenses.discrete.filter(x => (x.date <= date_1 && x.date >= date_2))
+    const ex_regular = expenses.regular.filter(x => (x.date <= date_1 && x.date >= date_2))
+
+    let monhtlyExpenses = []
+    months.forEach((date, i) => {
+        monhtlyExpenses[i] = 0
+        monhtlyExpenses[i] += ex_monthly.reduce((sum, x) => {
+            if (isSameMonth(date.milis, x.date)) return sum + x.amount
+            else return sum
+        }, 0)
+        monhtlyExpenses[i] += ex_discrete.reduce((sum, x) => {
+            if (isSameMonth(date.milis, x.date)) return sum + x.amount
+            else return sum
+        }, 0)
+        monhtlyExpenses[i] += ex_regular.reduce((sum, x) => {
+            if (isSameMonth(date.milis, x.date)) return sum + x.amount
+            else return sum
+        }, 0)
+    })
+    let monthlyEarnings = []
+    months.forEach((date, i) => {
+        monthlyEarnings[i] = 0
+        monthlyEarnings[i] += earnings.reduce((sum, x) => {
+            if (isSameMonth(date.milis, x.date)) return sum + x.amount
+            else return sum
+        }, 0)
+    })
+    let monthlyRevenue = []
+    months.forEach((x, i) => {
+        monthlyRevenue[i] = monthlyEarnings[i] - monhtlyExpenses[i]
+    })
+    chartLine.config.data.datasets[0].data = monhtlyExpenses.reverse()
+    chartLine.config.data.datasets[1].data = monthlyEarnings.reverse()
+    chartLine.config.data.datasets[2].data = monthlyRevenue.reverse()
+    chartLine.config.data.labels = months.map(x => x.date).reverse()
+    chartLine.update()
+}
+
+function isSameMonth(date1, date2) {
+    const d1 = new Date(date1);
+    const d2 = new Date(date2);
+    return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth();
+}
+
+function monthsDifference(startDate, endDate) {
+    const startYear = startDate.getFullYear();
+    const startMonth = startDate.getMonth();
+
+    const endYear = endDate.getFullYear();
+    const endMonth = endDate.getMonth();
+
+    const monthsDifference = (endYear - startYear) * 12 + (endMonth - startMonth);
+
+    return monthsDifference
+}

@@ -278,7 +278,7 @@ textarea {
   transform: translateX(-50%);
 }
 
-.list{
+.list {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -295,7 +295,7 @@ textarea {
   align-items: center;
 }
 
-.type{
+.type {
   position: absolute;
   top: 2px;
   left: 8px;
@@ -304,25 +304,90 @@ textarea {
   font-weight: 600;
 }
 
-.amount{
+.amount {
   font-size: 22px;
   font-weight: 500;
 }
 
-.container-er .amount{
+.container-er .amount {
   color: #146914;
 }
 
-.container-ex .amount{
-  color:#7a1c1c;
+.container-ex .amount {
+  color: #7a1c1c;
 }
 
-.date{
+.date {
   font-size: 20px;
   font-weight: 300;
 }
 
-.description{
+.description {
   font-size: 16px;
   line-height: 110%;
+}
+
+.card h4 {
+  text-align: center;
+}
+
+textarea {
+  padding-left: 8px;
+  border: 1px solid #bebebe !important;
+  border-radius: 6px;
+  width: 85%;
+}
+
+form>div {
+  margin-bottom: 24px;
+}
+
+form h4 {
+  padding-bottom: 8px;
+}
+
+form input,
+form select {
+  padding-left: 8px;
+  border: 1px solid #bebebe !important;
+  border-radius: 6px;
+  width: 40% !important;
+}
+
+.inline {
+  display: inline-block !important;
+  width: 45% !important;
+}
+
+.inline input {
+  width: 80% !important;
+}
+
+.confirm {
+  background: #122638;
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.clear{
+  background: none;
+  color: #f00;
+  display: flex;
+  align-items: center;
+}
+
+.pie-graph h4:last-of-type{
+  margin-top: 48px;
+}
+
+.card-footer input{
+  width: 200px !important;
+}
+
+.card-footer button{
+  background: #122638;
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 12px;
 }
