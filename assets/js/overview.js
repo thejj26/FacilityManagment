@@ -99,13 +99,13 @@ function addFacilityCard(facility) {    //adds the generated cards to the site a
     })
 }
 
-function deleteFacility(id) {   //facility deletion
+function deleteFacility(id) {
     const userResponse = confirm("Are you sure you want to delete this facility? This action cannot be undone.")
-    if (!userResponse) return   //if user has  canceled
-    deleteDoc(doc(db, "facilities", id)).then(() => {   //user has agreed -> attepmting deletion
-        window.location.reload()    //realoading to refresh the data
+    if (!userResponse) return
+    deleteDoc(doc(db, "facilities", id)).then(() => {   
+        window.location.reload() 
     }).catch(() => {
-        alert("Error deleting facility, try again or refresh the page.")    //error
+        alert("Error deleting facility, try again or refresh the page.")
     })
 }
 
@@ -192,5 +192,3 @@ function addNewFacility() { //adds a new facility to the collection
                 .catch(() => { alert("Error adding facility, try again or refresh the page.") })
     }
 }
-// TODO:
-// -responsive

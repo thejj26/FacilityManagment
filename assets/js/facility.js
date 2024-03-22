@@ -130,8 +130,8 @@ apply_pie.addEventListener("click", loadPieCharts)
 apply_line.addEventListener("click", loadLineChart)
 //loading fac data into the dom
 try {
-    facData.revenue = calculateRevenue(facData.expenses, facData.earnings)  //updates the revenue
-    updateDoc(facilityDocRef, facData)  //updates the doc to update the revenue
+    facData.revenue = calculateRevenue(facData.expenses, facData.earnings)
+    updateDoc(facilityDocRef, facData)
     facName.innerHTML = facData.name
     facLocation.innerHTML = `<b>${facData.city}</b>, ${facData.address1}${facData.address2.length > 0 ? ", " + facData.address2 : ""}`
     facType.innerHTML = determineFacilityType(parseInt(facData.type))
@@ -332,7 +332,7 @@ async function loadPieCharts() {
             'Regular'
         ],
         datasets: [{
-            label: 'My First Dataset',
+            label: '',
             data: [sum_monthly, sum_discrete, sum_regular],
             backgroundColor: [
                 '#CD6155',
@@ -348,7 +348,7 @@ async function loadPieCharts() {
             'Earnings'
         ],
         datasets: [{
-            label: 'My First Dataset',
+            label: '',
             data: [sum_expenses, sum_earnings],
             backgroundColor: [
                 '#E53935',

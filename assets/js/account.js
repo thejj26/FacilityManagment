@@ -22,7 +22,7 @@ const userDocSnap = await getDoc(userDocRef)
 try {
     loadUserData(userDocSnap.data())
 } catch (error) {  //if an error occurs (for example an error fetching user data), the user is redirected
-    confirm("Error loading user data")
+    alert("Error loading user data")
     window.location = "../../index.html"
 }
 
@@ -208,5 +208,4 @@ async function deleteAccount() {
             setToastAlert("Error while deleting account", true, false)
         })
     })
-
 }
