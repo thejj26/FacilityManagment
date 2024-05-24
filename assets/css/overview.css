@@ -157,12 +157,6 @@ header .maxw {
     font-size: 16px;
 }
 
-.btn-parent {
-    display: flex;
-    justify-content: center;
-    margin: 48px 0;
-}
-
 #btnAddNew {
     background: transparent;
     border: 1px solid #0D88F9;
@@ -182,6 +176,7 @@ header .maxw {
     padding-bottom: 16px;
     margin-bottom: 24px;
     border-bottom: 1px solid #000;
+    margin-top: 120px;
 }
 
 .title h2 {
@@ -212,7 +207,7 @@ span.building {
     border: 1px solid #525252;
     padding: 16px !important;
     width: 100%;
-    height: calc(100vh - 500px);
+    height: calc(100vh - 400px);
     border-radius: 35px;
     position: relative;
     overflow-y: scroll;
@@ -371,7 +366,7 @@ span.building {
     border-radius: 11px;
 }
 
-.facility-form .location{
+.facility-form .location {
     gap: 24px;
 }
 
@@ -402,12 +397,12 @@ span.building {
     border-bottom: 1px solid #000 !important;
 }
 
-.modal-btn{
+.modal-btn {
     padding: 4px 12px;
     font-size: 18px;
 }
 
-.modal-btn.confirm{
+.modal-btn.confirm {
     left: 50%;
     transform: translateX(-50%);
     background: #122638;
@@ -415,13 +410,130 @@ span.building {
     border-radius: 8px;
 }
 
-.modal-btn.clear{
+.modal-btn.clear {
     background: none;
     color: #f00;
     display: flex;
     align-items: center;
 }
 
-#hidden{
+#hidden {
     display: none;
+}
+
+@media only screen and (max-width:992px) {
+
+    .title{
+        margin-top: 72px;
+    }
+
+    .edit,
+    .delete {
+        width: 120px !important;
+    }
+
+    .manage {
+        justify-content: center !important;
+        gap: 32px;
+        align-items: start !important;
+        height: 48px !important;
+        margin-top: 12px;
+    }
+
+    .manage>div {
+        height: 100% !important;
+        padding: 4px 6px !important;
+    }
+
+    .manage>div * {
+        font-size: 34px;
+    }
+
+    .info .name,
+    .info .address,
+    .info .revenue {
+        font-size: 20px !important;
+    }
+
+    .info {
+        height: 80% !important;
+    }
+
+    .info * {
+        text-align: center;
+    }
+
+    .list {
+        height: calc(100vh - 350px);
+        padding: 8px !important;
+    }
+
+    .list-parent h3{
+        font-size: 26px;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+
+    .title{
+        flex-direction: column;
+        align-items: center;
+        gap:24px;
+    }
+    
+    .title h2{
+        font-size: 30px;
+        margin:0;
+        margin-right: 18px;
+    }
+
+    .building{
+        font-size: 40px !important;
+    }
+}
+
+@media only screen and (max-width:768px) {
+
+    .title{
+        margin-top: 46px;
+    }
+
+    .info {
+        padding: 0 8px !important;
+    }
+
+    .manage {
+        margin-top: 6px;
+    }
+
+    .list {
+        height: calc(100vh - 330px);
+        padding: 6px !important;
+    }
+
+    .info .name,
+    .info .address {
+        text-align: left;
+    }
+
+    .info .revenue {
+        width: 100%;
+        text-align: center !important;
+    }
+
+    .info .icon {
+        width: 20% !important;
+    }
+
+    .info div:has(.name) {
+        width: 80% !important;
+    }
+
+    .info div:has(.address),
+    .info .revenue {
+        width: 100% !important;
+    }
+
+    .info div:has(.address) {
+        padding-left: 20%;
+    }
 }

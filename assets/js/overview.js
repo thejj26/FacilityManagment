@@ -52,23 +52,23 @@ async function fetchFacilities(userID) {    //fetches facilities that belong to 
 function generateFacilityCard(facility) {   //generates a html element with all the needed info from the facility
     return `
    <div class="facility row">
-        <div class="info row col-11" id="fac-${facility.id}">
-            <div class="col-2 icon">
+        <div class="info row col-12 col-xl-11 col-lg-10 col-md-12 col-sm-12 col-xs-12" id="fac-${facility.id}">
+            <div class="icon col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
                 <span class="material-symbols-outlined">
                     home
                 </span>
             </div>
-            <div class="col-4">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-10 col-xs-10">
                 <p class="name">${facility.data().name}</p>
             </div>
-            <div class="col-4">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <p class="address">${facility.data().city}, ${facility.data().address1}</p>
             </div>
-            <div class="col-2 revenue">
+            <div class="col-xl-2 col-lg-2 revenue col-md-2 col-sm-12 col-xs-12">
                 <p class="revenue">${facility.data().revenue}€</p>
             </div>
         </div>
-        <div class="manage d-flex flex-column col-1">
+        <div class="manage d-flex flex-xl-column flex-lg-column flex-md-row flex-sm-row flex-xs-row col-xl-1 col-lg-2 col-md-12 col-sm-12 col-xs-12">
             <div class="edit d-flex" id="edit-${facility.id}">
                 <span class="material-symbols-outlined">
                     edit

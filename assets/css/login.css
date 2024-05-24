@@ -9,6 +9,7 @@ body {
 
 section,
 .row {
+    max-height: 100vh;
     height: 100vh;
 }
 
@@ -80,7 +81,8 @@ section,
     .bg-img {
         left: 20%;
     }
-    .login-box{
+
+    .login-box {
         min-width: 336px !important;
     }
 }
@@ -90,17 +92,17 @@ section,
         left: -24px;
     }
 
-    .login-box{
+    .login-box {
         max-width: 400px;
         margin: 0 auto;
         height: 300px;
     }
 
-    .login-box>a{
+    .login-box>a {
         font-size: 20px;
     }
 
-    .btn-form{
+    .btn-form {
         margin: auto 0;
     }
 }
