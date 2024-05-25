@@ -205,9 +205,9 @@ function loadEarnings() {    //loads all of the earnings using dom
     earnings.forEach(er => {
         const markup = `
         <div class="container-er row">
-            <div class="col-2 amount">${er.amount}€</div>
-            <div class="col-3 date">${new Date(er.date).toLocaleDateString("en-GB")}</div>
-            <div class="col-7 description">${er.description}</div>
+            <div class="col-6 col-md-6 col-lg-2 col-xl-2 amount">${er.amount}€</div>
+            <div class="col-6 col-md-6 col-lg-3 col-xl-3 date">${new Date(er.date).toLocaleDateString("en-GB")}</div>
+            <div class="col-12 col-md-12 col-lg-7 col-xl-7 description">${er.description}</div>
         </div>
         `
         list_er.insertAdjacentHTML("beforeend", markup)
@@ -221,9 +221,9 @@ function loadExpenses() {    //loads all of the expenses using dom
         const markup = `
         <div class="container-ex row">
             <div class="col-12 type">${ex.type == 1 ? "Monthly" : (ex.type == 2 ? "Discrete" : "Regular")}</div>
-            <div class="col-2 amount">${ex.amount}€</div>
-            <div class="col-3 date">${new Date(ex.date).toLocaleDateString("en-GB")}</div>
-            <div class="col-7 description">${ex.description}</div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-2 col-xl-2 amount">${ex.amount}€</div>
+            <div class="col-6 col-sm-6 dol-md-6 col-lg-3 col-xl-3 date">${new Date(ex.date).toLocaleDateString("en-GB")}</div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 description">${ex.description}</div>
         </div>
         `
         list_ex.insertAdjacentHTML("beforeend", markup)

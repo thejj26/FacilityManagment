@@ -104,8 +104,10 @@
           <div class="card-footer">
             <form onsubmit="return false;" class="d-flex flex-column align-items-center">
               <div>
-                <input type="date" id="date1_pie">
+                <p>From:</p>
                 <input type="date" id="date2_pie">
+                <p>To:</p>
+                <input type="date" id="date1_pie">
               </div>
               <button id="apply_pie">Apply</button>
             </form>
@@ -121,9 +123,15 @@
           </div>
           <div class="card-footer">
             <form onsubmit="return false;" class="d-flex flex-column align-items-center">
-              <div>
-                <input type="month" id="date1_line">
-                <input type="month" id="date2_line">
+              <div class="d-flex flex-row flex-sm-column flex-md-row gap-">
+                <div>
+                  <p>From:</p>
+                  <input type="month" id="date2_line">
+                </div>
+                <div>
+                  <p>To:</p>
+                  <input type="month" id="date1_line">
+                </div>
               </div>
               <button id="apply_line">Apply</button>
             </form>
@@ -132,7 +140,7 @@
       </div>
   </section>
   <section class="financial container">
-    <div class="maxw d-flex">
+    <div class="maxw d-flex flex-lg-column flex-xl-row flex-column">
       <div class="col-6 expenses d-flex flex-column">
         <h3>Expenses</h3>
         <button class="btn-f" id="addExpense" data-bs-target="#expensesModal" data-bs-toggle="modal">ADD

@@ -340,6 +340,12 @@ textarea {
 
 form>div {
   margin-bottom: 24px;
+  gap: 16px;
+  align-items: center;
+}
+
+form>div p {
+  display: inline;
 }
 
 form h4 {
@@ -370,24 +376,58 @@ form select {
   padding: 8px 12px;
 }
 
-.clear{
+.clear {
   background: none;
   color: #f00;
   display: flex;
   align-items: center;
 }
 
-.pie-graph h4:last-of-type{
+.pie-graph h4:last-of-type {
   margin-top: 48px;
 }
 
-.card-footer input{
+.card-footer input {
   width: 200px !important;
 }
 
-.card-footer button{
+.card-footer button {
   background: #122638;
   color: #fff;
   border-radius: 8px;
   padding: 8px 12px;
+}
+
+@media only screen and (max-width:1440px) {
+  .description, .date{
+    text-align: center !important;
+  }
+
+  .container-er, .container-ex{
+    padding: 0 18px;
+  }
+}
+
+@media only screen and (max-width:1200px){
+  .earnings, .expenses{
+    width: 100%;
+  }
+
+  .list{
+    margin-bottom: 24px;
+  }
+}
+
+@media only screen and (max-width:996px){
+  .date{
+    text-align: right  !important;
+  }
+
+  .type{
+    text-align: center;
+  }
+
+  .financial{
+    margin-top: 48px;
+  }
 }
